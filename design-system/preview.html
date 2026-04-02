@@ -111,18 +111,36 @@ body {
   backdrop-filter: blur(12px);
 }
 .nav-brand {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-body); font-size: 15px; font-weight: 700;
-  text-decoration: none; color: var(--black); text-transform: uppercase; letter-spacing: 0.04em;
+  display: flex; align-items: center;
+  text-decoration: none;
 }
-.nav-brand .shield {
-  width: 28px; height: 28px;
-  background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink));
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 13px; font-weight: 700;
+.nav-brand img { height: 32px; width: auto; display: block; }
+
+/* ─── HERO ────────────────────────────────────────────── */
+.hero {
+  padding: 120px 0 96px;
+  text-align: center;
+  background-color: var(--bg-page);
+  background-image:
+    linear-gradient(rgba(13,15,32,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,15,32,0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
-.nav-brand span { color: var(--sky-blue); }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--sky-blue); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display); font-size: 64px; font-weight: 400;
+  color: var(--black); line-height: 1.00; letter-spacing: -0.5px; margin-bottom: 24px;
+}
+.hero-subtitle {
+  font-size: 18px; color: var(--text-secondary); line-height: 1.65;
+  max-width: 560px; margin: 0 auto 40px;
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a {
   color: var(--black); text-decoration: none;
@@ -326,8 +344,7 @@ body {
 <!-- NAV -->
 <nav class="nav">
   <a class="nav-brand" href="#">
-    <div class="shield">PI</div>
-    pilot<span>institute</span>
+    <img src="../reference/img/PI_logo_hor-dark.svg" alt="Pilot Institute">
   </a>
   <div class="nav-links">
     <a href="#">Colors</a>
@@ -337,6 +354,19 @@ body {
   </div>
   <a class="nav-cta" href="#">Start Learning</a>
 </nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Design System — Light Mode Preview</div>
+    <div class="hero-title">Making Aviation<br>Easy, Safe &amp; Clear</div>
+    <div class="hero-subtitle">Pilot Institute is the online groundschool trusted by over 400,000 students across the United States.</div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#">Get Started</a>
+      <a class="btn btn-outline" href="#">Browse Courses</a>
+    </div>
+  </div>
+</section>
 
 <!-- COLOR PALETTE -->
 <section class="section">
