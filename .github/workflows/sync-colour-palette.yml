@@ -1,35 +1,30 @@
-  name: Sync Colour Palette from Google Sheets
-                                                        
-  on:
-    schedule:                                           
-      - cron: '0 6 * * *'
-    workflow_dispatch:
+name: Sync Colour Palette from Google Sheets
 
-  permissions:                                          
-    contents: write
-                                                        
-  jobs:           
-    sync:
-      runs-on: ubuntu-latest
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
-      steps:
-        - name: Check out repo
-          uses: actions/checkout@v4
-                                                        
-        - name: Fetch latest colour palette
-          run: |                                        
-            curl -L 
-  "https://docs.google.com/spreadsheets/d/1zNJYQhPKZy-lQ
-  nDqJIB3W4_h9a6_IbPNHgMRinXKn7Y/export?format=csv" \
-              -o reference/PI-Colour-Palette.csv        
-                  
-        - name: Commit if changed
-          run: |
-            git config user.name "github-actions[bot]"
-            git config user.email                       
-  "github-actions[bot]@users.noreply.github.com"
-            git add reference/PI-Colour-Palette.csv     
-            git diff --staged --quiet && echo "No       
-  changes" || \
-              (git commit -m "Auto-sync: update colour  
-  palette from Google Sheets" && git push) 
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Fetch latest colour palette
+        run: |
+          curl -L "https://docs.google.com/spreadsheets/d/1zNJYQhPKZy-lQnDqJIB3W4_h9a6_IbPNHgMRinXKn7Y/export?format=csv" \
+            -o reference/PI-Colour-Palette.csv
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reference/PI-Colour-Palette.csv
+          git diff --staged --quiet && echo "No changes" || \
+            (git commit -m "Auto-sync: update colour palette from Google Sheets" && git push)
