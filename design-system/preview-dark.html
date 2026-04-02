@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilot Institute Design System — Dark Mode</title>
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --midnight-navy:   #0D0F20;
+  --navy-blue:       #000033;
+  --ink-blue:        #080927;
+  --slate-blue:      #212353;
+  --steel-blue:      #1D3B61;
+  --deep-violet:     #260545;
+  --dark-burgundy:   #23061C;
+  --deep-plum:       #3B1636;
+  --rich-purple:     #3A0256;
+  --deep-teal:       #000F17;
+  --electric-indigo: #2E4292;
+
+  --sky-blue:        #2398FF;
+  --bright-blue:     #1877F2;
+  --magenta-pink:    #F80590;
+  --fuchsia:         #E42A84;
+  --lavender-purple: #8759F2;
+
+  --white:           #FFFFFF;
+  --light-gray:      #F0F0F0;
+  --black:           #000000;
+  --ash-gray:        #82898D;
+  --cool-gray:       #B9CDCB;
+
+  --forest-green:    #16A600;
+  --lime-green:      #63DB00;
+  --seafoam-green:   #2AEAA7;
+  --tomato-red:      #FF464A;
+  --crimson:         #E4262D;
+  --orange:          #FF6600;
+  --amber:           #F2A135;
+  --golden-yellow:   #FFBE33;
+
+  --aqua-blue:       #0EBFE5;
+  --cyan-sky:        #5AD7ED;
+  --ocean-blue:      #029DCD;
+  --baby-blue:       #81D1F4;
+  --lavender-mist:   #E4DCF8;
+  --coral:           #ED683D;
+  --peach:           #F6BC86;
+  --blush:           #F5ACA5;
+  --mint:            #AFEAD6;
+
+  /* Dark mode page tokens */
+  --bg-page:    #0D0F20;
+  --bg-card:    #080927;
+  --bg-nav:     rgba(13,15,32,0.95);
+  --text-main:  #FFFFFF;
+  --text-muted: rgba(255,255,255,0.65);
+  --text-dim:   rgba(255,255,255,0.40);
+  --border:     #1D3B61;
+  --accent:     #2398FF;
+  --accent2:    #F80590;
+
+  /* Fonts */
+  --font-display: 'Eina', Arial, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-impact:  'Gobold', 'Arial Black', Impact, sans-serif;
+  --font-body:    Arial, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.60;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 64px;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 15px; font-weight: 700;
+  text-decoration: none; color: white; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.nav-brand .shield {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink));
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 13px; font-weight: 700;
+}
+.nav-brand span { color: var(--sky-blue); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  color: white; text-decoration: none;
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  transition: color 0.15s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--sky-blue); }
+.nav-cta {
+  background: var(--sky-blue); color: white;
+  padding: 8px 18px; border-radius: 6px;
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  text-decoration: none; transition: background 0.2s ease;
+}
+.nav-cta:hover { background: var(--bright-blue); }
+
+/* ─── LAYOUT ──────────────────────────────────────────── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 80px 0; }
+.section + .section { border-top: 1px solid var(--border); }
+
+.section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--sky-blue); margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-display); font-size: 32px; font-weight: 700;
+  color: var(--text-main); margin-bottom: 40px; line-height: 1.15;
+}
+
+/* ─── HERO BLOCK ──────────────────────────────────────── */
+.hero {
+  padding: 120px 0 96px;
+  text-align: center;
+  background-color: var(--bg-page);
+  background-image:
+    linear-gradient(rgba(35,152,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,152,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--magenta-pink); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display); font-size: 64px; font-weight: 700;
+  color: white; line-height: 1.00; letter-spacing: -0.5px; margin-bottom: 24px;
+}
+.hero-subtitle {
+  font-size: 18px; color: var(--text-muted); line-height: 1.65;
+  max-width: 560px; margin: 0 auto 40px;
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer;
+  text-decoration: none; transition: all 0.2s ease;
+}
+.btn-primary { background: var(--sky-blue); color: white; }
+.btn-primary:hover { background: var(--bright-blue); }
+.btn-secondary { background: var(--magenta-pink); color: white; }
+.btn-secondary:hover { background: var(--fuchsia); }
+.btn-gradient { background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)); color: white; padding: 12px 28px; }
+.btn-gradient:hover { opacity: 0.88; transform: scale(1.02); }
+.btn-outline { background: transparent; color: var(--sky-blue); border: 1.5px solid var(--sky-blue); padding: 11px 23px; }
+.btn-outline:hover { background: rgba(35,152,255,0.12); }
+.btn-ghost-dark { background: transparent; color: white; border: 1.5px solid var(--steel-blue); padding: 11px 23px; }
+.btn-ghost-dark:hover { background: rgba(255,255,255,0.06); border-color: var(--sky-blue); }
+
+/* ─── COLOR SWATCHES ──────────────────────────────────── */
+.color-group { margin-bottom: 32px; }
+.color-group-title {
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--text-muted); margin-bottom: 16px;
+}
+.swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+.swatch { width: 100px; }
+.swatch-color { width: 100px; height: 64px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.10); margin-bottom: 6px; }
+.swatch-name { font-size: 11px; font-weight: 700; color: white; line-height: 1.3; }
+.swatch-hex { font-size: 10px; color: var(--text-muted); font-family: monospace; }
+
+/* ─── TYPOGRAPHY ──────────────────────────────────────── */
+.type-row { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.type-row:last-child { border-bottom: none; }
+.type-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ─── CARDS ───────────────────────────────────────────── */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.40);
+  transition: all 0.2s ease;
+}
+.card:hover { border-color: var(--sky-blue); box-shadow: 0 8px 24px rgba(0,0,0,0.50); }
+.card-course {
+  border-radius: 12px; overflow: hidden; position: relative; min-height: 200px;
+  background: linear-gradient(135deg, var(--slate-blue) 0%, var(--midnight-navy) 100%);
+  border-top: 3px solid; border-image: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)) 1;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.40);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-course:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.50); }
+.card-icon {
+  width: 36px; height: 36px; background: var(--sky-blue);
+  border-radius: 8px; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;
+}
+.card-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px; }
+.card-body { font-size: 14px; color: var(--text-muted); line-height: 1.60; }
+.card-category { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sky-blue); margin-bottom: 8px; }
+.card-callout-pink { background: var(--magenta-pink); border-radius: 8px; padding: 16px 20px; color: white; }
+.card-callout-dark { background: var(--slate-blue); border: 1px solid var(--steel-blue); border-radius: 8px; padding: 16px 20px; color: white; }
+
+/* ─── FORMS ───────────────────────────────────────────── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: white; }
+.input-dark {
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: white; padding: 12px 16px; border-radius: 6px;
+  font-size: 16px; font-family: var(--font-body);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease; outline: none;
+}
+.input-dark::placeholder { color: var(--ash-gray); }
+.input-dark:focus { border-color: var(--sky-blue); box-shadow: 0 0 0 3px rgba(35,152,255,0.25); }
+.input-error { border-color: var(--tomato-red) !important; box-shadow: 0 0 0 3px rgba(255,70,74,0.25) !important; }
+.form-hint { font-size: 12px; color: var(--text-muted); }
+.form-error-msg { font-size: 12px; color: var(--tomato-red); font-weight: 700; }
+
+/* ─── SPACING ─────────────────────────────────────────── */
+.spacing-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+.space-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.space-block { background: var(--sky-blue); opacity: 0.35; border-radius: 4px; width: 48px; }
+.space-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-align: center; }
+
+/* ─── RADIUS ──────────────────────────────────────────── */
+.radius-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-box { width: 64px; height: 64px; background: rgba(35,152,255,0.15); border: 1.5px solid var(--sky-blue); }
+.radius-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-align: center; }
+
+/* ─── ELEVATION ───────────────────────────────────────── */
+.elevation-grid { display: flex; flex-wrap: wrap; gap: 24px; }
+.elev-card {
+  background: var(--bg-card); border-radius: 12px; padding: 24px; width: 180px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.elev-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.elev-value { font-size: 10px; color: var(--text-dim); font-family: monospace; word-break: break-all; }
+
+/* ─── GRADIENT ────────────────────────────────────────── */
+.gradient-bar { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)); margin-bottom: 12px; }
+.gradient-bar-2 { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-purple)); }
+
+/* ─── STATE BADGES ────────────────────────────────────── */
+.state-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.state-badge { padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ─── GOBOLD IMPACT ───────────────────────────────────── */
+.impact-block {
+  padding: 64px 0; text-align: center;
+  background-color: var(--navy-blue);
+  background-image:
+    linear-gradient(rgba(35,152,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,152,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 16px; margin-bottom: 0;
+}
+.impact-text {
+  font-family: var(--font-impact); font-size: 96px; font-weight: 700;
+  color: white; text-transform: uppercase; line-height: 0.92; letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+.impact-sub { font-size: 18px; color: var(--text-muted); line-height: 1.65; margin-bottom: 32px; }
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+.footer {
+  background: var(--navy-blue); border-top: 1px solid var(--border);
+  text-align: center; padding: 32px 40px;
+  font-size: 12px; color: var(--text-dim);
+}
+.footer strong { color: var(--sky-blue); }
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .container { padding: 0 20px; }
+  .section { padding: 48px 0; }
+  .hero { padding: 64px 0; }
+  .hero-title { font-size: 36px; }
+  .impact-text { font-size: 48px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <div class="shield">PI</div>
+    pilot<span>institute</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="active">Colors</a>
+    <a href="#">Type</a>
+    <a href="#">Components</a>
+    <a href="#">Layout</a>
+  </div>
+  <a class="nav-cta" href="#">Start Learning</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Design System — Dark Mode Preview</div>
+    <div class="hero-title">Making Aviation<br>Easy, Safe &amp; Clear</div>
+    <div class="hero-subtitle">Pilot Institute is the online groundschool trusted by over 400,000 students across the United States.</div>
+    <div class="hero-actions">
+      <a class="btn btn-gradient" href="#">Get Started</a>
+      <a class="btn btn-outline" href="#">Browse Courses</a>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Color Palette</div>
+
+    <div class="color-group">
+      <div class="color-group-title">Primary Interactive</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#2398FF"></div><div class="swatch-name">Sky Blue</div><div class="swatch-hex">#2398FF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1877F2"></div><div class="swatch-name">Bright Blue</div><div class="swatch-hex">#1877F2</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F80590"></div><div class="swatch-name">Magenta Pink</div><div class="swatch-hex">#F80590</div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Dark Surfaces</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0D0F20;border:1px solid #1D3B61;"></div><div class="swatch-name">Midnight Navy</div><div class="swatch-hex">#0D0F20</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#000033;border:1px solid #1D3B61;"></div><div class="swatch-name">Navy Blue</div><div class="swatch-hex">#000033</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#080927;border:1px solid #1D3B61;"></div><div class="swatch-name">Ink Blue</div><div class="swatch-hex">#080927</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#212353"></div><div class="swatch-name">Slate Blue</div><div class="swatch-hex">#212353</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1D3B61"></div><div class="swatch-name">Steel Blue</div><div class="swatch-hex">#1D3B61</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2E4292"></div><div class="swatch-name">Electric Indigo</div><div class="swatch-hex">#2E4292</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#260545"></div><div class="swatch-name">Deep Violet</div><div class="swatch-hex">#260545</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#23061C"></div><div class="swatch-name">Dark Burgundy</div><div class="swatch-hex">#23061C</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B1636"></div><div class="swatch-name">Deep Plum</div><div class="swatch-hex">#3B1636</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3A0256"></div><div class="swatch-name">Rich Purple</div><div class="swatch-hex">#3A0256</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#000F17;border:1px solid #1D3B61;"></div><div class="swatch-name">Deep Teal</div><div class="swatch-hex">#000F17</div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Semantic States</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#16A600"></div><div class="swatch-name">Forest Green</div><div class="swatch-hex">#16A600</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#63DB00"></div><div class="swatch-name">Lime Green</div><div class="swatch-hex">#63DB00</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2AEAA7"></div><div class="swatch-name">Seafoam Green</div><div class="swatch-hex">#2AEAA7</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF464A"></div><div class="swatch-name">Tomato Red</div><div class="swatch-hex">#FF464A</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E4262D"></div><div class="swatch-name">Crimson</div><div class="swatch-hex">#E4262D</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF6600"></div><div class="swatch-name">Orange</div><div class="swatch-hex">#FF6600</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F2A135"></div><div class="swatch-name">Amber</div><div class="swatch-hex">#F2A135</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFBE33"></div><div class="swatch-name">Golden Yellow</div><div class="swatch-hex">#FFBE33</div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Illustration &amp; Chart Accents</div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#8759F2"></div><div class="swatch-name">Lavender Purple</div><div class="swatch-hex">#8759F2</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0EBFE5"></div><div class="swatch-name">Aqua Blue</div><div class="swatch-hex">#0EBFE5</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#5AD7ED"></div><div class="swatch-name">Cyan Sky</div><div class="swatch-hex">#5AD7ED</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#029DCD"></div><div class="swatch-name">Ocean Blue</div><div class="swatch-hex">#029DCD</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#81D1F4"></div><div class="swatch-name">Baby Blue</div><div class="swatch-hex">#81D1F4</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E42A84"></div><div class="swatch-name">Fuchsia</div><div class="swatch-hex">#E42A84</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B9006E"></div><div class="swatch-name">Deep Magenta</div><div class="swatch-hex">#B9006E</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7F1C7D"></div><div class="swatch-name">Royal Purple</div><div class="swatch-hex">#7F1C7D</div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Gradients</div>
+      <div style="max-width:480px;">
+        <div class="gradient-bar"></div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">Brand Gradient — Sky Blue (#2398FF) → Magenta Pink (#F80590) · 135°</div>
+        <div class="gradient-bar-2"></div>
+        <div style="font-size:12px;color:var(--text-muted);">Secondary — Sky Blue (#2398FF) → Lavender Purple (#8759F2) · 135°</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Typography Scale</div>
+
+    <div class="type-row">
+      <div class="type-meta">Eina · 64px · 400 · LH 1.00 · Display Hero</div>
+      <div style="font-family:var(--font-display);font-size:64px;font-weight:400;line-height:1.00;letter-spacing:-0.5px;color:white;">Making Aviation Easy</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Eina · 52px · 400 · LH 1.05 · H1</div>
+      <div style="font-family:var(--font-display);font-size:52px;font-weight:400;line-height:1.05;letter-spacing:-0.3px;color:white;">Private Pilot Course</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Eina · 40px · 300 · LH 1.10 · H2</div>
+      <div style="font-family:var(--font-display);font-size:40px;font-weight:300;line-height:1.10;letter-spacing:-0.2px;color:white;">Chart the Course</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Eina · 32px · 300 · LH 1.15 · H3</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:300;line-height:1.15;color:white;">Instrument Rating Made Easy</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Eina · 24px · 300 · LH 1.20 · H4</div>
+      <div style="font-family:var(--font-display);font-size:24px;font-weight:300;line-height:1.20;color:white;">Ground School Modules</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Eina · 20px · 300 · LH 1.25 · H5</div>
+      <div style="font-family:var(--font-display);font-size:20px;font-weight:300;line-height:1.25;color:white;">Part 107 Remote Pilot</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 18px · 400 · LH 1.65 · Body Large</div>
+      <div style="font-size:18px;line-height:1.65;color:var(--text-muted);">Pilot Institute is the online groundschool that makes aviation easy, safe, and clear. Trusted by over 400,000 students across the United States.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 16px · 400 · LH 1.60 · Body</div>
+      <div style="font-size:16px;line-height:1.60;color:var(--text-muted);">Our courses are designed by certified flight instructors and updated regularly to reflect the latest FAA regulations.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 14px · 400 · LH 1.55 · Body Small</div>
+      <div style="font-size:14px;line-height:1.55;color:var(--text-dim);">All course content is reviewed for accuracy against current FAA publications and Advisory Circulars.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 13px · 700 · Uppercase · Label / Button</div>
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:white;">Start Learning Now</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 11px · 700 · Uppercase · Overline</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--sky-blue);">Online Courses</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Arial · 12px · 400 · Caption</div>
+      <div style="font-size:12px;color:var(--text-dim);">Last updated April 2026 · FAA-aligned content</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOBOLD IMPACT -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Gobold Impact Display</div>
+    <div class="impact-block">
+      <div class="impact-text">Cleared for<br>Takeoff</div>
+      <div class="impact-sub">Gobold Bold · 96px · All-caps · Dark surface only</div>
+      <a class="btn btn-gradient" href="#">Start Your Journey</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUTTONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Button Variants</div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+      <button class="btn btn-primary">Primary — Sky Blue</button>
+      <button class="btn btn-secondary">Secondary — Magenta Pink</button>
+      <button class="btn btn-gradient">Gradient CTA</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost-dark">Ghost Dark</button>
+    </div>
+    <div style="margin-top:32px;">
+      <div class="section-label" style="margin-bottom:12px;">Semantic Badges</div>
+      <div class="state-grid">
+        <span class="state-badge" style="background:#16A600;color:white;">Correct</span>
+        <span class="state-badge" style="background:#FF464A;color:white;">Incorrect</span>
+        <span class="state-badge" style="background:#FF6600;color:white;">Caution</span>
+        <span class="state-badge" style="background:#FFBE33;color:#000;">Pending</span>
+        <span class="state-badge" style="background:rgba(35,152,255,0.15);color:#2398FF;border:1px solid rgba(35,152,255,0.4);">Info</span>
+        <span class="state-badge" style="background:var(--slate-blue);color:var(--text-muted);">Neutral</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Card Examples</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">★</div>
+        <div class="card-title">Private Pilot</div>
+        <div class="card-body">Earn your Private Pilot Certificate and open the skies. FAA-approved curriculum updated for 2026.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:var(--magenta-pink);">✈</div>
+        <div class="card-title">Part 107 Drone</div>
+        <div class="card-body">Pass your FAA drone exam on the first attempt. Used by over 200,000 drone pilots nationwide.</div>
+      </div>
+      <div class="card-course">
+        <div class="card-category">Drones</div>
+        <div class="card-title">Remote Pilot 101</div>
+        <div class="card-body">2.5 hours · 42 lessons</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;">
+      <div class="card-callout-pink" style="flex:1;min-width:200px;">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;">Alert</div>
+        <div style="font-size:14px;">Airspace authorization required before flying in Class B airspace.</div>
+      </div>
+      <div class="card-callout-dark" style="flex:1;min-width:200px;">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;color:var(--sky-blue);">Info</div>
+        <div style="font-size:14px;color:var(--text-muted);">Special Endorsement Required for high-performance aircraft operations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Form Elements</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input class="input-dark" type="text" placeholder="Enter your first name">
+        <span class="form-hint">Used on your certificate application.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="input-dark" type="email" placeholder="you@example.com">
+        <span class="form-hint">We will send your course access here.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Course</label>
+        <input class="input-dark" type="text" placeholder="Private Pilot, Part 107…">
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="color:var(--tomato-red);">Error State</label>
+        <input class="input-dark input-error" type="text" value="invalid@">
+        <span class="form-error-msg">Please enter a valid email address.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACING -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Spacing Scale</div>
+    <div class="spacing-grid">
+      <div class="space-item"><div class="space-block" style="height:4px;"></div><div class="space-label">4px<br>space-1</div></div>
+      <div class="space-item"><div class="space-block" style="height:8px;"></div><div class="space-label">8px<br>space-2</div></div>
+      <div class="space-item"><div class="space-block" style="height:12px;"></div><div class="space-label">12px<br>space-3</div></div>
+      <div class="space-item"><div class="space-block" style="height:16px;"></div><div class="space-label">16px<br>space-4</div></div>
+      <div class="space-item"><div class="space-block" style="height:24px;"></div><div class="space-label">24px<br>space-5</div></div>
+      <div class="space-item"><div class="space-block" style="height:32px;"></div><div class="space-label">32px<br>space-6</div></div>
+      <div class="space-item"><div class="space-block" style="height:40px;"></div><div class="space-label">40px<br>space-7</div></div>
+      <div class="space-item"><div class="space-block" style="height:48px;"></div><div class="space-label">48px<br>space-8</div></div>
+      <div class="space-item"><div class="space-block" style="height:64px;"></div><div class="space-label">64px<br>space-9</div></div>
+      <div class="space-item"><div class="space-block" style="height:80px;"></div><div class="space-label">80px<br>space-10</div></div>
+      <div class="space-item"><div class="space-block" style="height:96px;"></div><div class="space-label">96px<br>space-11</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BORDER RADIUS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Border Radius Scale</div>
+    <div class="radius-grid">
+      <div class="radius-item"><div class="radius-box" style="border-radius:0;"></div><div class="radius-label">Sharp<br>0px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:4px;"></div><div class="radius-label">Micro<br>4px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:6px;"></div><div class="radius-label">Standard<br>6px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-label">Card<br>12px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:16px;"></div><div class="radius-label">Large<br>16px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;width:96px;"></div><div class="radius-label">Pill<br>9999px</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ELEVATION -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Elevation System</div>
+    <div class="elevation-grid">
+      <div class="elev-card" style="box-shadow:none;border:1px solid var(--border);">
+        <div class="elev-label">Level 0 — Ground</div>
+        <div class="elev-value">Graph paper grid on Midnight Navy</div>
+      </div>
+      <div class="elev-card" style="box-shadow:none;border:1px solid #1D3B61;">
+        <div class="elev-label">Level 1 — Surface</div>
+        <div class="elev-value">1px Steel Blue border · no shadow</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 4px 16px rgba(0,0,0,0.40);">
+        <div class="elev-label">Level 2 — Raised</div>
+        <div class="elev-value">0 4px 16px rgba(0,0,0,0.40)</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 8px 24px rgba(0,0,0,0.50);">
+        <div class="elev-label">Level 3 — Float</div>
+        <div class="elev-value">0 8px 24px rgba(0,0,0,0.50)</div>
+      </div>
+      <div class="elev-card" style="box-shadow:0 16px 48px rgba(0,0,0,0.60);">
+        <div class="elev-label">Level 4 — Overlay</div>
+        <div class="elev-value">0 16px 48px rgba(0,0,0,0.60)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <strong>Pilot Institute</strong> Design System — Dark Mode Preview · All colors sourced from PI-Colour-Palette.csv
+</footer>
+
+</body>
+</html>
