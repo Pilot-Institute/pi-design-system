@@ -114,20 +114,29 @@ body {
   display: flex; align-items: center;
   text-decoration: none;
 }
-.nav-brand img { height: 32px; width: auto; display: block; }
+.nav-brand img { height: 26px; padding-top: 4px; width: auto; display: block; }
 
 /* ─── HERO ────────────────────────────────────────────── */
 .hero {
+  position: relative;
   padding: 120px 0 96px;
   text-align: center;
   background-color: var(--bg-page);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(13,15,32,0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(13,15,32,0.07) 1px, transparent 1px);
   background-size: 24px 24px;
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  pointer-events: none;
 }
+.hero > * { position: relative; }
 .hero-eyebrow {
   font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--sky-blue); margin-bottom: 20px;
@@ -137,7 +146,7 @@ body {
   color: var(--black); line-height: 1.00; letter-spacing: -0.5px; margin-bottom: 24px;
 }
 .hero-subtitle {
-  font-size: 18px; color: var(--text-secondary); line-height: 1.65;
+  font-size: 18px; color: var(--ink-blue); line-height: 1.65;
   max-width: 560px; margin: 0 auto 40px;
 }
 .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -165,7 +174,7 @@ body {
   color: var(--sky-blue); margin-bottom: 8px;
 }
 .section-title {
-  font-family: var(--font-display); font-size: 32px; font-weight: 700;
+  font-family: var(--font-display); font-size: 32px; font-weight: 500;
   color: var(--black); margin-bottom: 40px; line-height: 1.15;
 }
 
@@ -237,7 +246,6 @@ body {
 .card-course {
   border-radius: 12px; overflow: hidden; position: relative; min-height: 200px;
   background: linear-gradient(135deg, var(--slate-blue), var(--midnight-navy));
-  border-top: 3px solid; border-image: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)) 1;
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.40);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -256,10 +264,10 @@ body {
   border-radius: 8px; margin-bottom: 16px;
   display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;
 }
-.card-title-dark { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px; }
-.card-title-light { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
-.card-body-dark { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.60; }
-.card-body-light { font-size: 14px; color: var(--ash-gray); line-height: 1.60; }
+.card-title-dark { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: white; margin-bottom: 8px; }
+.card-title-light { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--black); margin-bottom: 8px; }
+.card-body-dark { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.55; }
+.card-body-light { font-size: 14px; color: var(--ash-gray); line-height: 1.55; }
 .card-category {
   font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--sky-blue); margin-bottom: 8px;
@@ -301,6 +309,23 @@ body {
 }
 .elev-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ash-gray); }
 .elev-value { font-size: 10px; color: var(--ash-gray); font-family: monospace; word-break: break-all; }
+
+/* ─── GOBOLD IMPACT ───────────────────────────────────── */
+.impact-block {
+  padding: 64px 0; text-align: center;
+  background-color: var(--midnight-navy);
+  background-image:
+    linear-gradient(rgba(35,152,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,152,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 16px;
+}
+.impact-text {
+  font-family: var(--font-impact); font-size: 96px; font-weight: 700;
+  color: white; text-transform: uppercase; line-height: 0.92; letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+.impact-sub { font-size: 18px; color: rgba(255,255,255,0.60); line-height: 1.65; margin-bottom: 32px; }
 
 /* ─── SEMANTIC STATES ─────────────────────────────────── */
 .state-grid { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -479,28 +504,28 @@ body {
     <div class="section-title">Typography Scale</div>
 
     <div class="type-row">
-      <div class="type-meta">Eina · 64px · 400 · LH 1.00 · Display Hero</div>
-      <div style="font-family:var(--font-display);font-size:64px;font-weight:400;line-height:1.00;letter-spacing:-0.5px;color:var(--black);">Making Aviation Easy</div>
+      <div class="type-meta">Eina · 64px · 500 · LH 1.00 · Display Hero</div>
+      <div style="font-family:var(--font-display);font-size:64px;font-weight:500;line-height:1.00;letter-spacing:-0.5px;color:var(--black);">Making Aviation Easy</div>
     </div>
     <div class="type-row">
       <div class="type-meta">Eina · 52px · 400 · LH 1.05 · H1</div>
       <div style="font-family:var(--font-display);font-size:52px;font-weight:400;line-height:1.05;letter-spacing:-0.3px;color:var(--black);">Private Pilot Course</div>
     </div>
     <div class="type-row">
-      <div class="type-meta">Eina · 40px · 300 · LH 1.10 · H2</div>
-      <div style="font-family:var(--font-display);font-size:40px;font-weight:300;line-height:1.10;letter-spacing:-0.2px;color:var(--black);">Chart the Course</div>
+      <div class="type-meta">Eina · 40px · 500 · LH 1.10 · H2</div>
+      <div style="font-family:var(--font-display);font-size:40px;font-weight:500;line-height:1.10;letter-spacing:-0.2px;color:var(--black);">Chart the Course</div>
     </div>
     <div class="type-row">
-      <div class="type-meta">Eina · 32px · 300 · LH 1.15 · H3</div>
-      <div style="font-family:var(--font-display);font-size:32px;font-weight:300;line-height:1.15;color:var(--black);">Instrument Rating Made Easy</div>
+      <div class="type-meta">Eina · 32px · 500 · LH 1.15 · H3</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:500;line-height:1.15;color:var(--black);">Instrument Rating Made Easy</div>
     </div>
     <div class="type-row">
-      <div class="type-meta">Eina · 24px · 300 · LH 1.20 · H4</div>
-      <div style="font-family:var(--font-display);font-size:24px;font-weight:300;line-height:1.20;color:var(--black);">Ground School Modules</div>
+      <div class="type-meta">Eina · 24px · 500 · LH 1.20 · H4</div>
+      <div style="font-family:var(--font-display);font-size:24px;font-weight:500;line-height:1.20;color:var(--black);">Ground School Modules</div>
     </div>
     <div class="type-row">
-      <div class="type-meta">Eina · 20px · 300 · LH 1.25 · H5</div>
-      <div style="font-family:var(--font-display);font-size:20px;font-weight:300;line-height:1.25;color:var(--black);">Part 107 Remote Pilot</div>
+      <div class="type-meta">Eina · 20px · 500 · LH 1.25 · H5</div>
+      <div style="font-family:var(--font-display);font-size:20px;font-weight:500;line-height:1.25;color:var(--black);">Part 107 Remote Pilot</div>
     </div>
     <div class="type-row">
       <div class="type-meta">Arial · 18px · 400 · LH 1.65 · Body Large</div>
@@ -529,6 +554,19 @@ body {
     <div class="type-row">
       <div class="type-meta">Arial · 10px · 400 · LH 1.40 · Micro</div>
       <div style="font-size:10px;line-height:1.40;color:var(--ash-gray);">*Results may vary. FAA test pass rates based on Pilot Institute student surveys, 2023–2025.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOBOLD IMPACT -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Design Token</div>
+    <div class="section-title">Gobold Impact Display</div>
+    <div class="impact-block">
+      <div class="impact-text">Cleared for<br>Takeoff</div>
+      <div class="impact-sub">Gobold Bold · 96px · All-caps · Dark surface only</div>
+      <a class="btn btn-gradient" href="#">Start Your Journey</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdftoppm -r 72 -png -f 6 -l 15 \"/Users/zheniavasiliev/Library/CloudStorage/GoogleDrive-zzhenia@gmail.com/My Drive/2026/graphic work/Pilot Institute/Branding/Claude Design MD/PI branding materials/260401_Design_Guide.pdf\" /tmp/design_guide_page)",
+      "Bash(ls /tmp/design_guide_page*)"
+    ]
+  }
+}

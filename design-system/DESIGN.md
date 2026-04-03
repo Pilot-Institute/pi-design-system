@@ -109,12 +109,12 @@ The PI gradient runs **Sky Blue** (`#2398FF`) → **Magenta Pink** (`#F80590`) a
 | Role | Font | Size | Weight | Line Height | Letter Spacing | Usage |
 |------|------|------|--------|-------------|----------------|-------|
 | Gobold Impact | Gobold | 80–120px (5–7.5rem) | 700 | 0.92 | -1px | Full-bleed dark section callouts, video text overlays. All-caps only. |
-| Display Hero | Eina | 64px (4rem) | 400 | 1.00 | -0.5px | Primary hero headline |
+| Display Hero | Eina | 64px (4rem) | 500 | 1.00 | -0.5px | Primary hero headline |
 | H1 | Eina | 52px (3.25rem) | 400 | 1.05 | -0.3px | Page-level headings |
-| H2 | Eina | 40px (2.5rem) | 300 | 1.10 | -0.2px | Section headings |
-| H3 | Eina | 32px (2rem) | 300 | 1.15 | normal | Sub-section headings, card titles |
-| H4 | Eina | 24px (1.5rem) | 300 | 1.20 | normal | Component headings |
-| H5 | Eina | 20px (1.25rem) | 300 | 1.25 | normal | Small section headings, list labels |
+| H2 | Eina | 40px (2.5rem) | 500 | 1.10 | -0.2px | Section headings |
+| H3 | Eina | 32px (2rem) | 500 | 1.15 | normal | Sub-section headings, card titles |
+| H4 | Eina | 24px (1.5rem) | 500 | 1.20 | normal | Component headings |
+| H5 | Eina | 20px (1.25rem) | 500 | 1.25 | normal | Small section headings, list labels |
 | Body Large | Arial | 18px (1.125rem) | 400 | 1.65 | normal | Intro paragraphs, lead text |
 | Body | Arial | 16px (1rem) | 400 | 1.60 | normal | Standard body copy, UI text |
 | Body Small | Arial | 14px (0.875rem) | 400 | 1.55 | normal | Secondary body, footnotes |
@@ -129,7 +129,7 @@ The PI gradient runs **Sky Blue** (`#2398FF`) → **Magenta Pink** (`#F80590`) a
 - **Eina for authority, Arial for utility**: Eina headings carry the brand's precision and confidence; Arial handles every functional communication task with absolute clarity.
 - **Gobold as a klaxon**: Gobold appears only at 80px or larger, always all-caps, always on dark backgrounds. It is a P.A. announcement — commanding and brief. Never use it for sub-headlines, labels, or anything below 60px.
 - **Tight headlines, generous body**: Display type uses line-heights of 0.92–1.20 for billboard impact. Body text opens to 1.60–1.65 for sustained readability. This range alone creates legible visual hierarchy.
-- **Weight discipline**: Eina headings use 300–400 only — light to regular weight creates the airy, precise quality the brand requires. Gobold at 700 handles all maximum-impact moments. Arial body text uses 400 for copy and 700 for labels, buttons, and table headers.
+- **Weight discipline**: Eina headings use 400–500 for light surfaces and 300–400 for dark surfaces — the slightly heavier weight on white backgrounds compensates for reduced contrast. Gobold at 700 handles all maximum-impact moments. Arial body text uses 400 for copy and 700 for labels, buttons, and table headers.
 - **Labels and overlines are always uppercase**: Any text 13px or below serving as a category marker, button label, or eyebrow uses uppercase with letter-spacing 0.04–0.08em.
 
 ---
@@ -344,7 +344,7 @@ Base unit: 8px
 - Use Sky Blue (`#2398FF`) as the primary interactive color — every link, CTA, and active state defaults here
 - Use Magenta Pink (`#F80590`) with precision — it reads as a signal, not decoration; one per screen is usually enough
 - Apply the Sky Blue → Magenta Pink gradient to hero and course imagery — it is the brand's most recognisable visual device
-- Use Eina Bold (700) for all display and heading type — weight 500–600 for H4/H5 only
+- Use Eina weight 500 for Display Hero and H2–H5 on light surfaces; use 400 for H1 and 300–400 on dark surfaces — weight responds to background contrast
 - Reserve Gobold for 80px+ all-caps moments on dark surfaces only — treat it like an announcement, not a heading style
 - Keep body text in Arial at 400 weight — Eina must not appear at paragraph size
 - Use Forest Green (`#16A600`) for correct/pass states and Tomato Red (`#FF464A`) for incorrect/fail — these are established in PI's FAA quiz content
