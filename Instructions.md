@@ -32,6 +32,7 @@ PI-design-system/
 │   ├── 2d-animation.md
 │   ├── 3d-animation.md
 │   └── troubleshooting-guides.md
+├── notes/                        ← session notes created by /note command
 └── .github/workflows/
     └── sync-colour-palette.yml   ← daily Google Sheets → CSV sync
 ```
@@ -280,6 +281,35 @@ Before finalising, verify every item:
 - [ ] Light and dark previews are visually consistent with each other
 - [ ] README is complete
 - [ ] No generic atmosphere language ("clean", "modern", "minimal") anywhere
+
+---
+
+## /note Command
+
+When the user runs `/note`, Claude must:
+
+1. Summarise the current conversation — decisions made, files changed, context discussed, anything worth preserving.
+2. Determine the filename: `notes/YYYY-MM-DD.md` using today's date.
+3. **If the file does not exist** — create it with the following structure:
+
+```
+# Notes — YYYY-MM-DD
+
+## [Timestamp or session title]
+
+[Summary of conversation]
+```
+
+4. **If the file already exists** — append a new section to the bottom of the file:
+
+```
+
+## [Timestamp or session title]
+
+[Summary of conversation]
+```
+
+Do not overwrite existing content. Always append when the file exists.
 
 ---
 
