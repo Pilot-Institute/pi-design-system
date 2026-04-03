@@ -258,8 +258,8 @@ body {
 .elev-value { font-size: 10px; color: var(--text-dim); font-family: monospace; word-break: break-all; }
 
 /* ─── GRADIENT ────────────────────────────────────────── */
-.gradient-bar { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)); margin-bottom: 12px; }
-.gradient-bar-2 { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-purple)); }
+.gradient-bar { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--magenta-pink)); margin-bottom: 5px; }
+.gradient-bar-2 { height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--sky-blue), var(--lavender-purple)); margin-bottom: 5px; }
 
 /* ─── STATE BADGES ────────────────────────────────────── */
 .state-grid { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -267,17 +267,27 @@ body {
 
 /* ─── GOBOLD IMPACT ───────────────────────────────────── */
 .impact-block {
-  padding: 64px 0; text-align: center;
-  background-color: var(--navy-blue);
-  background-image:
-    linear-gradient(rgba(35,152,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35,152,255,0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border-radius: 16px; margin-bottom: 0;
+  position: relative;
+  padding: 96px 0; text-align: center;
+  background-color: var(--bg-page);
+  overflow: hidden;
 }
+.impact-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(35,152,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,152,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  pointer-events: none;
+}
+.impact-block > * { position: relative; }
 .impact-text {
   font-family: var(--font-impact); font-size: 96px; font-weight: 700;
-  color: white; text-transform: uppercase; line-height: 0.92; letter-spacing: -1px;
+  color: white; text-transform: uppercase; line-height: 1.15; letter-spacing: 0px;
   margin-bottom: 24px;
 }
 .impact-sub { font-size: 18px; color: var(--text-muted); line-height: 1.65; margin-bottom: 32px; }
