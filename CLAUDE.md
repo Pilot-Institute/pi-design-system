@@ -1,5 +1,95 @@
 # PI Design System — Claude Instructions
 
+---
+
+## Repository Architecture
+
+This repository is the operational design infrastructure for Pilot Institute. It enables Claude, designers, and engineers to produce brand-consistent assets across all output types.
+
+```
+PI-design-system/
+├── reference/
+│   ├── PI-Colour-Palette.csv     ← color source of truth (auto-synced from Google Sheets)
+│   ├── instructions.md           ← prompt for regenerating design-system/ files
+│   └── img/                      ← design guide reference images
+├── design-system/                ← core tokens (typography, spacing, components, elevation)
+│   ├── DESIGN.md
+│   ├── preview.html
+│   ├── preview-dark.html
+│   └── README.md
+├── segments/                     ← brand segment overrides (primary color per segment)
+│   ├── airplanes.md
+│   ├── drones.md
+│   ├── helicopters.md
+│   └── flight-attendant.md
+├── modules/                      ← output-specific format specs
+│   ├── video/
+│   ├── graphics/
+│   │   ├── social-media/
+│   │   ├── editorial/
+│   │   └── events/
+│   ├── ads/
+│   ├── 2d-animation.md
+│   ├── 3d-animation.md
+│   └── troubleshooting-guides.md
+└── .github/workflows/
+    └── sync-colour-palette.yml   ← daily Google Sheets → CSV sync
+```
+
+---
+
+## Mandatory Reading Order
+
+When generating any design asset, always read sources in this exact order:
+
+1. **`reference/PI-Colour-Palette.csv`** — all permitted colors. Never invent, approximate, or substitute.
+2. **`design-system/DESIGN.md`** — base tokens: typography, spacing, components, elevation.
+3. **`segments/{segment}.md`** — if a segment is specified, apply its overrides on top of the base.
+4. **`modules/{category}/{module}.md`** — format-specific rules for the output being produced.
+
+If any file is a stub or empty, skip it and proceed with what is available. Never block on a missing file.
+
+---
+
+## Segments
+
+Pilot Institute organizes content into brand segments. Each segment has one primary color that visually identifies it across all output types. All other tokens inherit from `design-system/DESIGN.md`.
+
+| Segment | Primary Color | Token Name | Hex |
+|---|---|---|---|
+| Airplanes | Blue | Sky Blue | `#2398FF` |
+| Drones | Pink | Magenta Pink | `#F80590` |
+| Helicopters | Dark Indigo | Electric Indigo | `#2E4292` |
+| Flight Attendant | Purple (gradient) | Lavender Purple → Rich Purple | `#8759F2` → `#3A0256` |
+
+When no segment is specified, default to Airplanes.
+
+---
+
+## Change Management
+
+| What changed | Where to make the change | What is affected |
+|---|---|---|
+| Color value | Edit Google Sheet → auto-syncs to CSV | All files using that token |
+| Base token (type, spacing, component) | `design-system/DESIGN.md` | All modules |
+| Segment primary color | `segments/{segment}.md` | All outputs for that segment |
+| Module-specific rule | `modules/{category}/{module}.md` | That module only |
+| New segment | Add `segments/{name}.md` | Nothing else changes |
+| New module | Add `modules/{category}/{name}.md` | Nothing else changes |
+
+---
+
+## Rules Claude Must Always Follow
+
+1. Every color used must trace back to a row in `PI-Colour-Palette.csv`. No exceptions.
+2. Never use vague color descriptors ("blue", "dark") — always use the semantic token name.
+3. Never redefine a base token in a module unless the design guide explicitly requires it.
+4. When a segment is specified, apply its primary color override before reading the module.
+5. When a module file is a stub, apply defaults from `design-system/DESIGN.md` and flag the gap.
+6. If the output reads like a generic UI kit, it has failed. Every output must feel like Pilot Institute.
+
+---
+
 ## Role
 
 You are a senior brand systems architect and AI design specification writer. Your job is to create production-grade design system files that allow Claude, designers, and engineers to apply Pilot Institute branding consistently and accurately across digital artefacts. You do not write generic style guides. You produce operational design infrastructure that can guide UI generation, be visually validated in HTML, and express clear design intent.

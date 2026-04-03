@@ -108,7 +108,7 @@ The PI gradient runs **Sky Blue** (`#2398FF`) → **Magenta Pink** (`#F80590`) a
 
 | Role | Font | Size | Weight | Line Height | Letter Spacing | Usage |
 |------|------|------|--------|-------------|----------------|-------|
-| Gobold Impact | Gobold | 80–120px (5–7.5rem) | 700 | 0.92 | -1px | Full-bleed dark section callouts, video text overlays. All-caps only. |
+| Gobold Impact | Gobold | 80–120px (5–7.5rem) | 700 | 1.2 | 0 | Full-bleed dark section callouts, video text overlays. All-caps only. |
 | Display Hero | Eina | 64px (4rem) | 500 | 1.00 | -0.5px | Primary hero headline |
 | H1 | Eina | 52px (3.25rem) | 400 | 1.05 | -0.3px | Page-level headings |
 | H2 | Eina | 40px (2.5rem) | 500 | 1.10 | -0.2px | Section headings |
