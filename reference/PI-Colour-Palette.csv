@@ -1,12 +1,12 @@
-,,Name,CMYK,RGB,HEX,Pantone (upd),Nearest Pantone (Coated)
+1,,Name,CMYK,RGB,HEX,Pantone (upd),Nearest Pantone (Coated)
 ,,Primary,,,,,
 ,,White,"0,0,0,0","255,255,255",#FFFFFF,Pantone White,
 ,,Black,"0,0,0,100","0,0,0",#000000,Pantone Black C,
 ,,Midnight Navy,"100,91,51,77","13,15,32",#0D0F20,Pantone Black 6 C,
-,,Dark Burgundy,"82,92,52,80","35,6,28",#23061C,Pantone Black 6 C,
+,,Dark Burgundy,"82, 92,52,80","35,6,28",#23061C,Pantone Black 6 C,
 ,,Deep Violet,"98,100,36,45","38,5,69",#260545,Pantone Black 6 C,
 ,,Navy Blue,"100,93,42,68","0,0,51",#000033,Pantone Black 6 C,
-,,Steel Blue,"97,76,35,26","29,59,97",#1D3B61,,
+,,Steel Blue,"97,76, 35, 26","29,59,97",#1D3B61,,
 ,,Bright Blue,"82,54,0,0","24,119,242",#1877F2,Pantone 2727 C,
 ,,Sky Blue,"69,35,0,0","35,152,255",#2398FF,Pantone 2191 C,
 ,,Magenta Pink,"0,97,0,0","248,5,144",#F80590,Pantone 213 C,
@@ -22,7 +22,7 @@
 ,,Rich Purple,C33 M98 Y0 K66,,#3A0256,,Pantone 268 C
 ,,Ink Blue,C79 M77 Y0 K85,,#080927,,Pantone 2766 C
 ,,Slate Blue,C60 M58 Y0 K67,,#212353,,Pantone 2747 C
-,,Electric Indigo,"100,88,9,1","46,66,146",#2E4292,Pantone 2728 C,
+,,Electric Indigo,"100, 88, 9, 1","46, 66, 146",#2E4292,Pantone 2728 C,
 ,,Brown,C0 M50 Y100 K60,,#663300,,Pantone 4625 C
 ,,Brick Red,C0 M62 Y66 K49,,#82312C,,Pantone 7608 C
 ,,Chestnut,C0 M62 Y66 K64,,#5C231F,,Pantone 490 C
@@ -53,3 +53,4 @@
 ,,Blush,C0 M30 Y33 K4,,#F5ACA5,,Pantone 7605 C
 ,,Linen,C0 M3 Y11 K5,,#F3ECD9,,Pantone 7527 C
 ,,Cool Gray,C10 M0 Y1 K20,,#B9CDCB,,Pantone 5527 C
+,,test new entry for github action,,,,,
