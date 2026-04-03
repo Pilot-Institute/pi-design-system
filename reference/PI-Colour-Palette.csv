@@ -1,1 +1,55 @@
-<!DOCTYPE html><html lang="en"><head><meta name="description" content="Web word processing, presentations and spreadsheets"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"><link rel="shortcut icon" href="//docs.google.com/favicon.ico"><title>Page Not Found</title><meta name="referrer" content="origin"><link href="//fonts.googleapis.com/css?family=Product+Sans" rel="stylesheet" type="text/css" nonce="NsHpcm6MWlLEUuv6tCdOdg"><style nonce="NsHpcm6MWlLEUuv6tCdOdg">#drive-logo{margin:18px 0;position:absolute;white-space:nowrap}.docs-drivelogo-img{background-image:url(//ssl.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_116x41dp.png);-webkit-background-size:116px 41px;background-size:116px 41px;display:inline-block;height:41px;vertical-align:bottom;width:116px}.docs-drivelogo-text{color:#000;display:inline-block;opacity:.54;text-decoration:none;font-family:"Product Sans",Arial,Helvetica,sans-serif;font-size:32px;text-rendering:optimizeLegibility;position:relative;top:-6px;left:-7px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){.docs-drivelogo-img{background-image:url(//ssl.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_116x41dp.png)}}.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}* html .goog-inline-block{display:inline}*:first-child+html .goog-inline-block{display:inline}sentinel{}</style><style type="text/css" nonce="NsHpcm6MWlLEUuv6tCdOdg">body {background-color: #fff; font-family: Arial,sans-serif; font-size: 13px; margin: 0; padding: 0;}a, a:link, a:visited {color: #112ABB;}</style><style type="text/css" nonce="NsHpcm6MWlLEUuv6tCdOdg">.errorMessage {font-size: 12pt; font-weight: bold; line-height: 150%;}</style></head><body><div id="outerContainer"><div id="innerContainer"><div style="position: absolute; top: -80px;"><div style="margin: 18px 0; position: absolute; white-space: nowrap;"><a href="//support.google.com/docs/"><img height="35px" src="//ssl.gstatic.com/docs/common/product/spreadsheets_lockup2.png" alt="Google logo"/></a></div></div><div align="center"><p class="errorMessage" style="padding-top: 50px">Sorry, the file you have requested does not exist.</p><p>Make sure that you have the correct URL and the file exists.</p><div style="background: #F0F6FF; border: 1px solid black; margin-top: 35px; padding: 10px 125px; width: 300px;"><p><strong>Get stuff done with Google Drive</strong></p><p>Apps in Google Drive make it easy to create, store and share online documents, spreadsheets, presentations and more.</p><p>Learn more at <a href="https://drive.google.com/start/apps">drive.google.com/start/apps</a>.</p></div></div></div></div></body><style nonce="NsHpcm6MWlLEUuv6tCdOdg">html {height: 100%; overflow: auto;}body {height: 100%; overflow: auto;}#outerContainer {margin: auto; max-width: 750px;}#innerContainer {margin-bottom: 20px; margin-left: 40px; margin-right: 40px; margin-top: 80px; position: relative;}</style></html>
+,,Name,CMYK,RGB,HEX,Pantone (upd),Nearest Pantone (Coated)
+,,Primary,,,,,
+,,White,"0,0,0,0","255,255,255",#FFFFFF,Pantone White,
+,,Black,"0,0,0,100","0,0,0",#000000,Pantone Black C,
+,,Midnight Navy,"100,91,51,77","13,15,32",#0D0F20,Pantone Black 6 C,
+,,Dark Burgundy,"82,92,52,80","35,6,28",#23061C,Pantone Black 6 C,
+,,Deep Violet,"98,100,36,45","38,5,69",#260545,Pantone Black 6 C,
+,,Navy Blue,"100,93,42,68","0,0,51",#000033,Pantone Black 6 C,
+,,Steel Blue,"97,76,35,26","29,59,97",#1D3B61,,
+,,Bright Blue,"82,54,0,0","24,119,242",#1877F2,Pantone 2727 C,
+,,Sky Blue,"69,35,0,0","35,152,255",#2398FF,Pantone 2191 C,
+,,Magenta Pink,"0,97,0,0","248,5,144",#F80590,Pantone 213 C,
+,,Lavender Purple,"60,62,0,0","135,89,242",#8759F2,,Pantone 2725 C
+,,Aqua Blue,"70,0,8,0","14,191,229",#0EBFE5,,Pantone 3125 C
+,,Orange,"0,70,94,0","255,102,0",#FF6600,,Pantone 165 C
+,,Golden Yellow,"0,30,82,0","255,190,51",#FFBE33,,Pantone 1235 C
+,,Light Gray,"7,5,6,0","240,240,240",#F0F0F0,,Pantone Cool Gray 1 C
+,,,,,,,
+,,Secondary,,,,,
+,,Deep Plum,C0 M63 Y8 K77,,#3B1636,,Pantone 2695 C
+,,Deep Teal,C100 M35 Y0 K91,,#000F17,,Pantone 5463 C
+,,Rich Purple,C33 M98 Y0 K66,,#3A0256,,Pantone 268 C
+,,Ink Blue,C79 M77 Y0 K85,,#080927,,Pantone 2766 C
+,,Slate Blue,C60 M58 Y0 K67,,#212353,,Pantone 2747 C
+,,Electric Indigo,"100,88,9,1","46,66,146",#2E4292,Pantone 2728 C,
+,,Brown,C0 M50 Y100 K60,,#663300,,Pantone 4625 C
+,,Brick Red,C0 M62 Y66 K49,,#82312C,,Pantone 7608 C
+,,Chestnut,C0 M62 Y66 K64,,#5C231F,,Pantone 490 C
+,,Orange Peel,C0 M56 Y93 K2,,#F96E11,,Pantone 1665 C
+,,Coral,C0 M56 Y74 K7,,#ED683D,,Pantone 7416 C
+,,Tomato Red,C0 M73 Y71 K0,,#FF464A,,Pantone 1788 C
+,,Fuchsia,C0 M82 Y42 K11,,#E42A84,,Pantone 214 C
+,,Crimson,C0 M83 Y80 K11,,#E4262D,,Pantone 1795 C
+,,Tangerine,C0 M59 Y93 K2,,#F96611,,Pantone 1655 C
+,,Amber,C0 M33 Y78 K5,,#F2A135,,Pantone 1375 C
+,,Royal Purple,C0 M78 Y2 K50,,#7F1C7D,,Pantone 2603 C
+,,Deep Magenta,C0 M100 Y41 K27,,#B9006E,,Pantone 241 C
+,,Turquoise,C71 M12 Y0 K17,,#3EBBD4,,Pantone 312 C
+,,Ocean Blue,C99 M23 Y0 K20,,#029DCD,,Pantone 306 C
+,,Baby Blue,C47 M14 Y0 K4,,#81D1F4,,Pantone 297 C
+,,Cerulean,C79 M31 Y0 K5,,#33A7F2,,Pantone 279 C
+,,Cyan Sky,C62 M9 Y0 K7,,#5AD7ED,,Pantone 311 C
+,,Lavender Mist,C8 M11 Y0 K3,,#E4DCF8,,Pantone 2635 C
+,,Peach,C0 M24 Y46 K4,,#F6BC86,,Pantone 720 C
+,,Mint,C25 M0 Y9 K8,,#AFEAD6,,Pantone 337 C
+,,Seafoam Green,C82 M0 Y29 K8,,#2AEAA7,,Pantone 3395 C
+,,Lime Green,C55 M0 Y100 K14,,#63DB00,,Pantone 375 C
+,,Forest Green,C87 M0 Y100 K35,,#16A600,,Pantone 361 C
+,,Ash Gray,C8 M3 Y0 K45,,#82898D,,Pantone Cool Gray 8 C
+,,Cream,C0 M6 Y18 K0,,#FFF0D0,,Pantone 7401 C
+,,Ivory,C0 M4 Y10 K0,,#FFF5E5,,Pantone 7499 C
+,,Pure White,C0 M0 Y0 K0,,#FFFFFF,,Pantone White
+,,Blush,C0 M30 Y33 K4,,#F5ACA5,,Pantone 7605 C
+,,Linen,C0 M3 Y11 K5,,#F3ECD9,,Pantone 7527 C
+,,Cool Gray,C10 M0 Y1 K20,,#B9CDCB,,Pantone 5527 C
