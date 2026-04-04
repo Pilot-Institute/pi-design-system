@@ -11,7 +11,7 @@ PI-design-system/
 ├── reference/
 │   ├── PI-Colour-Palette.csv     ← color source of truth (auto-synced from Google Sheets)
 │   ├── instructions.md           ← prompt for regenerating design-system/ files
-│   └── img/                      ← design guide reference images
+│   └── img/                      ← design guide reference images and logo SVG files
 ├── design-system/                ← core tokens (typography, spacing, components, elevation)
 │   ├── DESIGN.md
 │   ├── preview.html
@@ -44,9 +44,10 @@ PI-design-system/
 When generating any design asset, always read sources in this exact order:
 
 1. **`reference/PI-Colour-Palette.csv`** — all permitted colors. Never invent, approximate, or substitute.
-2. **`design-system/DESIGN.md`** — base tokens: typography, spacing, components, elevation.
-3. **`segments/{segment}.md`** — if a segment is specified, apply its overrides on top of the base.
-4. **`modules/{category}/{module}.md`** — format-specific rules for the output being produced.
+2. **`reference/img/`** — read all design guide images AND all SVG logo files (see Source Material below).
+3. **`design-system/DESIGN.md`** — base tokens: typography, spacing, components, elevation, logo system, photography, illustration, and icon rules.
+4. **`segments/{segment}.md`** — if a segment is specified, apply its overrides on top of the base.
+5. **`modules/{category}/{module}.md`** — format-specific rules for the output being produced.
 
 If any file is a stub or empty, skip it and proceed with what is available. Never block on a missing file.
 
@@ -82,7 +83,7 @@ When no segment is specified, default to Airplanes.
 
 ## Rules Claude Must Always Follow
 
-1. Every color used must trace back to a row in `PI-Colour-Palette.csv`. No exceptions.
+1. Every color used must trace back to a row in `PI-Colour-Palette.csv`. No exceptions. The only permitted off-CSV hex values are `#252e73` and `#b8deff`, which exist exclusively within the logo SVG asset files — they must never be used as design tokens or applied outside the logo.
 2. Never use vague color descriptors ("blue", "dark") — always use the semantic token name.
 3. Never redefine a base token in a module unless the design guide explicitly requires it.
 4. When a segment is specified, apply its primary color override before reading the module.
@@ -103,7 +104,7 @@ Generate exactly four files, written to `design-system/`:
 
 | File | Description |
 |------|-------------|
-| `design-system/DESIGN.md` | Complete 9-section design specification |
+| `design-system/DESIGN.md` | Complete 13-section design specification |
 | `design-system/preview.html` | Light mode visual token catalog |
 | `design-system/preview-dark.html` | Dark mode visual token catalog |
 | `design-system/README.md` | System overview and usage notes |
@@ -121,6 +122,14 @@ Read the `.csv` file in `reference/`. This is the **only** authoritative source 
 
 ### Design guide images
 Read all images in `reference/img/`. They are exports from the official Pilot Institute Design Guide and cover: color system, typeface specimens, logo variants, visual devices, illustration style, course UI, lead magnet layouts, white paper templates, and design system structure.
+
+### SVG logo files
+Read the SVG logo files in `reference/img/`. The primary files are:
+- `PI_logo_hor-dark.svg` — horizontal lockup for light backgrounds (dark wordmark)
+- `PI_logo_hor-light.svg` — horizontal lockup for dark backgrounds (light/white wordmark)
+- Any mark-only or stacked variant SVGs present in the same directory
+
+When reading these SVGs, extract and document the exact color values used in the paths. Note that two hex values in these files — `#252e73` (dark wordmark) and `#b8deff` (light element) — do not appear in `PI-Colour-Palette.csv`. These are pre-existing logo-asset-specific values. Do not use them as design tokens. Flag them explicitly in the Logo System section of DESIGN.md as logo-internal values that exist outside the token system.
 
 ### Real-world output samples
 Read all `.jpg` and `.png` files in `reference/img/` that are not design guide exports. These show the brand applied to actual print and digital artifacts.
@@ -146,6 +155,7 @@ Read all files in `reference/output-examples/`. These are benchmark-quality desi
 - Use the `Name` column verbatim as the semantic token name
 - Do not invent, approximate, or substitute colors not present in the CSV
 - Do not hard-code any color value that does not appear in the CSV
+- The only permitted exceptions are `#252e73` and `#b8deff` — logo SVG asset values, documented in Section 3 of DESIGN.md only, never used as design tokens
 - When the CSV is updated and the prompt is re-run, all four output files must reflect the updated palette without requiring changes to this file
 
 ---
@@ -178,60 +188,93 @@ Fallback stack: `Arial, system-ui, -apple-system, 'Helvetica Neue', sans-serif`
 - **Editorial boldness**: large overlapping type, text that bleeds out of containers in dark sections
 - **Clean two-column layout** for print and editorial (white background, Sky Blue accent headers)
 - **Gradient treatments**: blue-to-pink linear gradients on hero imagery and course cards
-- **Logo**: shield with wings and star; "pilot" in white (light weight), "institute" in the primary brand blue
+- **Logo**: shield with wings and star; "pilot" in white (light weight), "institute" in Sky Blue
 
 ---
 
 ## DESIGN.md — Required Sections
 
-Must include all 9 sections. No omissions.
+Must include all 13 sections. No omissions.
 
 ### 1. Visual Theme & Atmosphere
 - Use material, emotional, or real-world analogies to describe the visual identity
 - Avoid all generic descriptors: "clean", "modern", "minimal" are not permitted
 - Each characteristic must feel distinctively Pilot Institute — not interchangeable with any other brand
 
-### 2. Color Palette & Roles
+### 2. Brand Foundation
+- Vision, mission, core values, key audiences
+- If source material does not supply these, write a clearly marked placeholder directing the brand team to supply the content
+- Include a "known brand orientation" summary derived from available reference material
+
+### 3. Logo System
+- Logo mark anatomy: shield shape, wings, star, color breakdown
+- Wordmark: "pilotinstitute" as single word, weight treatment for "pilot" vs "institute"
+- Logo variants: horizontal lockup (primary), mark-only, stacked
+- Color modes: full color on dark, reversed on dark/color, dark variant on light
+- Clear space rules: minimum clear space measurement
+- Minimum size rules: mark and horizontal lockup
+- SVG asset values: document `#252e73` and `#b8deff` as logo-asset-specific, outside token system
+- Visual center note: the icon is asymmetrical — wings extend left, so the visual center runs through the middle of the shield, not the bounding box center. Document alignment rules for centered, left-aligned, and right-aligned placements. Warn against using bounding box center for optical alignment.
+- Misuse rules: at least 6 explicit don'ts
+
+### 4. Color Palette & Roles
 - All colors sourced exclusively from the CSV — no exceptions
 - Every entry must include: semantic name (verbatim from CSV), hex value, functional role, usage context
 - Group into logical systems: primary surfaces, interactive, text, borders, semantic states, illustration accents
 - Explain the rationale for each role assignment
 
-### 3. Typography Rules
+### 5. Typography Rules
 - Full hierarchy table: font family, size (px and rem), weight, line height, letter spacing, usage context
 - Must cover: display/hero, multiple heading levels, body (large, standard, small), labels, captions, micro, code
 - Include typographic philosophy
 
-### 4. Component Stylings
+### 6. Photography
+- Photography types and subject categories: course photography, hero sections, lead magnet covers, YouTube thumbnails
+- Style rules: contrast, saturation, color temperature, authenticity requirements
+- Photography treatments: specific overlay gradient values with named tokens
+- Placement rules: when photography appears vs. does not appear
+- Photography don'ts
+
+### 7. Illustration & Icons
+- Illustration style: flat vector, geometry rules, no photorealism
+- Character rules: head/body shapes, features, colors (limit per figure), poses and aviation themes
+- Equipment and icon illustrations
+- Color rules for illustration (CSV-only palette enforcement)
+- Illustration don'ts
+- Icon system: size scale, color on dark vs. light, container treatment
+- Status icons, category icons, functional icons
+- Icon don'ts
+
+### 8. Component Stylings
 - Must include: buttons (all variants), cards, inputs, navigation
 - Each component must define: base state, hover, focus, active (if applicable), transition timing
 - No static-only descriptions
 
-### 5. Layout Principles
+### 9. Layout Principles
 - Spacing scale (base unit + increments)
 - Grid system and container widths
 - Section spacing
 - Whitespace philosophy
 
-### 6. Depth & Elevation
+### 10. Depth & Elevation
 - Named elevation levels
 - Exact shadow values
 - Usage rules per level
 
-### 7. Do's and Don'ts
-- Minimum 8–10 rules each
-- Must reflect real constraints and prevent design drift
+### 11. Do's and Don'ts
+- Minimum 10 rules each (Do's and Don'ts)
+- Must cover: color, typography, logo, photography, and illustration
 - These are enforced rules, not suggestions
 
-### 8. Responsive Behavior
+### 12. Responsive Behavior
 - Breakpoints with specific widths
 - Layout changes per breakpoint
 - Typography scaling
 - Component stacking logic
 
-### 9. Agent Prompt Guide
+### 13. Agent Prompt Guide
 - Named token reference for colors, typography, surfaces
-- Example prompts for: hero sections, cards, buttons, layout blocks
+- Example prompts for: hero sections, cards, buttons, layout blocks, logo placement, illustration characters, icon usage, photography overlays
 - Always reference semantic tokens — never vague terms like "blue" or "dark"
 
 ---
@@ -242,12 +285,19 @@ Each preview file must:
 - Be fully self-contained — no external CSS or JS (web font `@import` is permitted)
 - Accurately reflect every token defined in DESIGN.md
 - Include all of: color palette swatches, typography scale, button variants, card examples, form elements, spacing system, border radius scale, elevation system
+- Include: Logo section, Illustration Colors section, Icon System section
 - Be responsive across mobile and desktop
 - Show clear visual hierarchy
 
-**Light mode** (`preview.html`): Light surface background, PI Blue and Pink as accents.
+**Light mode** (`preview.html`): Light surface background, PI Blue and Pink as accents. Logo displayed on white and on a Sky Blue chip. Icon system on Light Gray containers.
 
-**Dark mode** (`preview-dark.html`): Dark navy page background with graph paper grid overlay. This is the signature PI surface — it must feel unmistakably like the real brand.
+**Dark mode** (`preview-dark.html`): Dark navy page background with graph paper grid overlay. This is the signature PI surface — it must feel unmistakably like the real brand. Logo displayed on Midnight Navy. Icon system on Ink Blue containers.
+
+**Logo section in both files**: Show the horizontal lockup via the SVG file path. Show a mark-only placeholder using CSS geometry (shield shape). Label all logo color values including the flagged off-palette values `#252e73` and `#b8deff`.
+
+**Illustration Colors section in both files**: Color chips for the character illustration palette: Sky Blue (`#2398FF`), Magenta Pink (`#F80590`), Lavender Purple (`#8759F2`), Aqua Blue (`#0EBFE5`), Seafoam Green (`#2AEAA7`). Labeled "Illustration palette".
+
+**Icon System section in both files**: Grid of representative icons using Unicode symbols or simple CSS shapes. Sizes: 16px, 20px, 24px, 32px. On light: Sky Blue icons on Light Gray containers. On dark: Sky Blue icons on Ink Blue containers.
 
 **Restrictions:**
 - No emojis or icons in navigation
@@ -262,7 +312,42 @@ Include:
 - What this design system is based on
 - What it is used for
 - File structure explanation
+- Notes about the expanded 13-section DESIGN.md and the new sections
+- Explanation of the two logo SVG colors (`#252e73` and `#b8deff`) that fall outside the CSV palette and why they exist
 - Limitations (custom fonts, asset dependencies, what is not covered)
+- **Timeline & Roadmap section** — see rule below
+
+### Timeline & Roadmap Rule
+
+The README must always contain a Timeline & Roadmap section. This section is the living record of how the PI design system has evolved and where it is going.
+
+**When regenerating the README:**
+1. Read the existing README before writing the new one
+2. Copy the entire Timeline & Roadmap section from the old README into the new one exactly as-is
+3. Then append any new events or roadmap updates that reflect work completed in the current session
+4. Never delete or rewrite past timeline entries — only append
+
+The Timeline & Roadmap section must contain two subsections:
+
+**Completed** — a table of dated events, most recent last:
+
+| Date | Event |
+|------|-------|
+| Summer 2025 | Current version of PI course design created |
+| Late 2025 | Figma design guide created |
+| April 2026 | First version of the code-based PI design system created (this repository) |
+
+**Roadmap** — a prioritised table of upcoming work:
+
+| Priority | Goal | Description |
+|----------|------|-------------|
+| Next | Complete Brand Foundation | ... |
+| Next | Build out modules/ | ... |
+| Medium | Replace Figma design guide with a CI/CD mini site | ... |
+| Long-term | Automated asset generation | ... |
+| Long-term | Automated asset processing pipeline | Person drops input file into shared folder (GitHub, Dropbox, Drive) → GitHub Action triggers → routes to correct module based on folder path or file metadata → Claude reads specs and processes input → output file saved and PR/review link sent to person → they approve or request changes |
+
+When a roadmap item is completed, move it to the Completed table with the date it was done.
 
 ---
 
@@ -270,16 +355,25 @@ Include:
 
 Before finalising, verify every item:
 
-- [ ] All 9 DESIGN.md sections are present and complete
+- [ ] All 13 DESIGN.md sections are present and complete
 - [ ] Every color in every file traces back to a row in the CSV
-- [ ] No hex value appears in any output that is not in the CSV
+- [ ] No hex value appears in any output that is not in the CSV, except `#252e73` and `#b8deff` in the logo section only
 - [ ] Every color entry includes: name (verbatim from CSV), hex, role, usage context
+- [ ] Logo section documents all three variants, color modes, clear space, minimum size, and misuse rules
+- [ ] Logo SVG off-palette values are explicitly flagged in DESIGN.md and README.md
+- [ ] Photography section covers subject categories, style rules, overlay treatments, and don'ts
+- [ ] Illustration section covers character rules, equipment icons, color enforcement, and don'ts
+- [ ] Icon section covers size scale, color on dark and light, container treatment, and icon types
 - [ ] Typography table covers the full hierarchy
 - [ ] All components include hover, focus, and active states
+- [ ] Both preview files include: Logo section, Illustration Colors section, Icon System section
 - [ ] Both preview files render correctly and reflect DESIGN.md
 - [ ] Dark preview uses the graph paper grid texture on navy
 - [ ] Light and dark previews are visually consistent with each other
-- [ ] README is complete
+- [ ] Do's section has at least 10 items covering color, type, logo, photography, and illustration
+- [ ] Don'ts section has at least 10 items covering color, type, logo, photography, and illustration
+- [ ] Agent Prompt Guide includes examples for logo, illustration, icons, and photography
+- [ ] README is complete and references the off-palette logo values
 - [ ] No generic atmosphere language ("clean", "modern", "minimal") anywhere
 
 ---
