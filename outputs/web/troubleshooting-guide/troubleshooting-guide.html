@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilot Institute – Troubleshooting &amp; Help Guides</title>
+<!--
+  FONTS
+  Eina is a licensed typeface — obtain from Pilot Institute brand assets and host locally.
+  Replace 'Eina' below with the exact font-family name from the licensed @font-face declaration.
+  Until Eina is available, Arial renders as the approved fallback throughout this file.
+-->
+<style>
+
+/* ── DESIGN TOKENS ─────────────────────────────────────── */
+/* All values trace to PI-Colour-Palette.csv               */
+:root {
+  /* Dark surfaces */
+  --midnight-navy:  #0D0F20;
+  --ink-blue:       #080927;
+  --slate-blue:     #212353;
+  --steel-blue:     #1D3B61;
+
+  /* Primary interactive */
+  --sky-blue:       #2398FF;
+  --bright-blue:    #1877F2;
+  --magenta-pink:   #F80590;
+  --fuchsia:        #E42A84;
+
+  /* Light surfaces */
+  --white:          #FFFFFF;
+  --light-gray:     #F0F0F0;
+  --cool-gray:      #B9CDCB;
+
+  /* Text */
+  --black:          #000000;
+  --ash-gray:       #82898D;
+
+  /* Semantic */
+  --orange:         #FF6600;   /* warning / caution */
+  --amber:          #F2A135;   /* attention */
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #2398FF, #F80590);
+
+  /* Graph paper grid — signature PI surface */
+  --grid-line:      rgba(35, 152, 255, 0.08);
+  --grid-size:      24px;
+
+  /* Elevation — light mode */
+  --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-2: 0 2px 8px rgba(0,0,0,0.10);
+  --shadow-3: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-4: 0 8px 32px rgba(0,0,0,0.16);
+
+  /* Typography */
+  --font-display: 'Eina', Arial, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-body:    Arial, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* Radius */
+  --radius-standard: 6px;
+  --radius-card:     8px;
+  --radius-large:    16px;
+  --radius-pill:     9999px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--light-gray);
+  color: var(--black);
+  line-height: 1.60;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER / NAV ────────────────────────────────────────── */
+.header {
+  background: rgba(13, 15, 32, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--steel-blue);
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Wordmark — "pilot" White, "institute" Sky Blue per logo spec */
+.header-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.header-title span {
+  color: var(--sky-blue);
+  font-weight: 700;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.header-nav a {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.8125rem;   /* 13px — Label/Button scale */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 0.15s ease;
+}
+.header-nav a:hover { color: var(--white); }
+
+.header-badge {
+  background: rgba(35, 152, 255, 0.12);
+  border: 1px solid rgba(35, 152, 255, 0.25);
+  color: var(--sky-blue);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── HERO ────────────────────────────────────────────────── */
+/* Graph paper grid — the signature PI dark surface */
+.hero {
+  background-color: var(--midnight-navy);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: 96px 48px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Radial glow accents — Sky Blue and Magenta Pink at low opacity */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(35, 152, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+  width: 50%;
+  height: 160%;
+  background: radial-gradient(ellipse, rgba(248, 5, 144, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);  /* Display Hero: 64px desktop */
+  font-weight: 500;                       /* Display Hero weight per spec */
+  color: var(--white);
+  margin-bottom: 20px;
+  position: relative;
+  letter-spacing: -0.5px;
+  line-height: 1.00;
+}
+.hero h1 .accent {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-family: var(--font-body);
+  font-size: 1.125rem;   /* Body Large — 18px */
+  color: rgba(255, 255, 255, 0.70);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  position: relative;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* ── SEARCH ──────────────────────────────────────────────── */
+.search-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.search-wrapper input {
+  width: 100%;
+  padding: 14px 20px 14px 52px;
+  border: 1px solid var(--steel-blue);
+  border-radius: var(--radius-standard);   /* 6px — spec input */
+  background: var(--ink-blue);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-wrapper input::placeholder {
+  color: var(--ash-gray);
+}
+.search-wrapper input:hover {
+  border-color: var(--slate-blue);
+}
+.search-wrapper input:focus {
+  border-color: var(--sky-blue);
+  box-shadow: 0 0 0 3px rgba(35, 152, 255, 0.25);
+}
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ash-gray);
+  pointer-events: none;
+}
+
+/* ── MAIN CONTENT ────────────────────────────────────────── */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
+
+/* ── QUICK LINKS ─────────────────────────────────────────── */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+}
+.quick-link {
+  background: var(--white);
+  border-radius: var(--radius-card);   /* 8px — light card */
+  border: 1px solid var(--cool-gray);
+  padding: 32px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: var(--black);
+}
+.quick-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
+  border-color: var(--sky-blue);
+}
+.ql-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 1.5rem;
+}
+.ql-icon.blue { background: rgba(35, 152, 255, 0.10); }
+.ql-icon.pink { background: rgba(248, 5, 144, 0.10); }
+.ql-icon.dark { background: var(--light-gray); }    /* Light Gray — icon container on light */
+
+.ql-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--black);
+}
+
+/* ── SECTION TITLE ───────────────────────────────────────── */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.section-title .bar {
+  width: 4px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--gradient-brand);
+  flex-shrink: 0;
+}
+.section-title h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;        /* H3 scale (32px) for section label */
+  font-weight: 500;
+  letter-spacing: normal;
+  color: var(--black);
+  line-height: 1.15;
+}
+
+/* ── ACCORDION — GUIDE ITEMS ─────────────────────────────── */
+.guide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.guide-item {
+  background: var(--white);
+  border-radius: var(--radius-card);    /* 8px — light card */
+  border: 1px solid var(--cool-gray);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.guide-item:hover {
+  box-shadow: var(--shadow-2);
+}
+.guide-item.open {
+  box-shadow: var(--shadow-2);
+  border-color: rgba(35, 152, 255, 0.35);
+}
+
+.guide-header {
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+.guide-header:hover { background: rgba(35, 152, 255, 0.03); }
+
+.guide-number {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-card);    /* 8px */
+  background: rgba(35, 152, 255, 0.08);
+  color: var(--sky-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.guide-item.open .guide-number {
+  background: var(--sky-blue);
+  color: var(--white);
+}
+
+.guide-title-area { flex: 1; }
+.guide-title-area h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;    /* Body Large / H5 territory — compact list context */
+  font-weight: 500;
+  color: var(--black);
+  line-height: 1.40;
+  margin-bottom: 4px;
+}
+
+/* Tags — Overline scale: Arial 11px 700 uppercase */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;   /* 11px — Overline */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tag.common    { background: rgba(248, 5, 144, 0.08);  color: var(--magenta-pink); }
+.tag.account   { background: rgba(35, 152, 255, 0.08); color: var(--sky-blue); }
+.tag.course    { background: rgba(0, 0, 0, 0.06);       color: var(--black); }
+.tag.community { background: rgba(35, 152, 255, 0.10); color: var(--sky-blue); }
+
+.chevron {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.2s ease;
+  color: var(--ash-gray);
+}
+.guide-item.open .chevron {
+  transform: rotate(180deg);
+  color: var(--sky-blue);
+}
+
+.guide-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.guide-body-inner {
+  padding: 0 28px 28px 86px;
+  font-family: var(--font-body);
+  font-size: 1rem;         /* Body — 16px */
+  line-height: 1.60;
+  color: var(--black);
+}
+.guide-body-inner p { margin-bottom: 16px; }
+.guide-body-inner strong { color: var(--black); font-weight: 700; }
+
+/* Numbered steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 38px;
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.60;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(35, 152, 255, 0.08);
+  color: var(--sky-blue);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Callouts */
+.callout {
+  background: rgba(35, 152, 255, 0.06);
+  border-left: 3px solid var(--sky-blue);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius-standard) var(--radius-standard) 0;
+  margin: 16px 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--black);
+}
+/* Warning callout — Orange is the semantic warning color per spec */
+.callout.warning {
+  background: rgba(255, 102, 0, 0.06);
+  border-left-color: var(--orange);
+}
+.callout strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+/* ── CONTACT BANNER ──────────────────────────────────────── */
+/* Dark surface with graph paper grid — signature PI treatment */
+.contact-banner {
+  margin-top: 64px;
+  background-color: var(--midnight-navy);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  border-radius: var(--radius-large);    /* 16px */
+  padding: 64px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.contact-banner::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 50%;
+  height: 180%;
+  background: radial-gradient(ellipse, rgba(35, 152, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+.contact-banner h2 {
+  font-family: var(--font-display);
+  color: var(--white);
+  font-size: 2rem;        /* H3 scale */
+  font-weight: 500;
+  margin-bottom: 12px;
+  position: relative;
+  line-height: 1.15;
+}
+.contact-banner p {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 1.125rem;    /* Body Large */
+  line-height: 1.65;
+  margin-bottom: 32px;
+  position: relative;
+  font-weight: 400;
+}
+
+/* Primary button — Sky Blue, Arial 13px 700 uppercase, 6px radius */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sky-blue);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: var(--radius-standard);    /* 6px */
+  font-family: var(--font-body);
+  font-size: 0.8125rem;   /* 13px — Label/Button */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.contact-btn:hover {
+  background: var(--bright-blue);
+  box-shadow: 0 4px 16px rgba(35, 152, 255, 0.35);
+}
+.contact-btn:focus {
+  outline: 2px solid var(--sky-blue);
+  outline-offset: 2px;
+}
+.contact-btn:active {
+  background: var(--bright-blue);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.30);
+}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 32px 48px;
+  color: var(--ash-gray);
+  font-family: var(--font-body);
+  font-size: 0.75rem;     /* Caption — 12px */
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+/* Breakpoints per spec: Mobile <640px, Tablet 640–1024px, Desktop >1024px */
+@media (max-width: 1024px) {
+  .quick-links { grid-template-columns: repeat(3, 1fr); }
+  .main { padding: 48px 32px; }
+  .hero { padding: 80px 32px 64px; }
+  .header-nav { gap: 16px; }
+}
+@media (max-width: 640px) {
+  .header-inner { padding: 16px 20px; }
+  .header-nav a { display: none; }
+  .hero { padding: 64px 20px 48px; }
+  .hero h1 { font-size: 2rem; }
+  .main { padding: 32px 16px; }
+  .quick-links { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .quick-link { padding: 24px 14px; }
+  .guide-header { padding: 18px 20px; }
+  .guide-body-inner { padding-left: 20px; }
+  .contact-banner { padding: 48px 24px; }
+  .section-title h2 { font-size: 1.5rem; }
+  .header-badge { display: none; }
+  /* Full-width buttons on mobile for min 44px touch target */
+  .contact-btn { width: 100%; justify-content: center; }
+}
+
+/* ── ENTRANCE ANIMATIONS ─────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.guide-item { animation: fadeInUp 0.35s ease both; }
+.guide-item:nth-child(1)  { animation-delay: 0.04s; }
+.guide-item:nth-child(2)  { animation-delay: 0.08s; }
+.guide-item:nth-child(3)  { animation-delay: 0.12s; }
+.guide-item:nth-child(4)  { animation-delay: 0.16s; }
+.guide-item:nth-child(5)  { animation-delay: 0.20s; }
+.guide-item:nth-child(6)  { animation-delay: 0.24s; }
+.guide-item:nth-child(7)  { animation-delay: 0.28s; }
+.guide-item:nth-child(8)  { animation-delay: 0.32s; }
+.guide-item:nth-child(9)  { animation-delay: 0.36s; }
+.guide-item:nth-child(10) { animation-delay: 0.40s; }
+.guide-item:nth-child(11) { animation-delay: 0.44s; }
+.guide-item:nth-child(12) { animation-delay: 0.48s; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-title">pilot<span>institute</span></div>
+    <nav class="header-nav">
+      <a href="https://pilotinstitute.com">Home</a>
+      <a href="https://pilotinstitute.com/courses/">Courses</a>
+      <a href="mailto:support@pilotinstitute.com">Contact Support</a>
+      <div class="header-badge">Help Center</div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Troubleshooting &amp; <span class="accent">Help Guides</span></h1>
+  <p>Quick answers to common questions about your Pilot Institute account, courses, and community.</p>
+  <div class="search-wrapper">
+    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search for help (e.g. login, password, quizzes)..." oninput="filterGuides(this.value)">
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- QUICK LINKS -->
+  <div class="quick-links">
+    <a class="quick-link" onclick="openGuide(0)">
+      <div class="ql-icon blue">🔑</div>
+      <div class="ql-label">Login Help</div>
+    </a>
+    <a class="quick-link" onclick="openGuide(6)">
+      <div class="ql-icon pink">🔒</div>
+      <div class="ql-label">Reset Password</div>
+    </a>
+    <a class="quick-link" onclick="openGuide(1)">
+      <div class="ql-icon blue">📝</div>
+      <div class="ql-label">QuizBank</div>
+    </a>
+    <a class="quick-link" onclick="openGuide(5)">
+      <div class="ql-icon dark">👥</div>
+      <div class="ql-label">Community</div>
+    </a>
+    <a class="quick-link" onclick="openGuide(9)">
+      <div class="ql-icon blue">⚙️</div>
+      <div class="ql-label">Device Setup</div>
+    </a>
+    <a class="quick-link" onclick="openGuide(8)">
+      <div class="ql-icon pink">📸</div>
+      <div class="ql-label">Screenshots</div>
+    </a>
+  </div>
+
+  <!-- SECTION: ALL GUIDES -->
+  <div class="section-title">
+    <div class="bar"></div>
+    <h2>All Troubleshooting Guides</h2>
+  </div>
+
+  <div class="guide-list" id="guideList">
+
+    <!-- 1. How to Login -->
+    <div class="guide-item" data-keywords="login sign in google broken link teachable">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">1</div>
+        <div class="guide-title-area">
+          <h3>How to log in to Pilot Institute.</h3>
+          <span class="tag common">Common Issue</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Many students search for "Pilot Institute Login" on Google and end up clicking on outdated or broken links, including old Teachable login pages that are no longer supported.</p>
+          <p><strong>The correct way to log in:</strong></p>
+          <ol class="steps">
+            <li>Open your browser and go directly to <strong>pilotinstitute.com</strong>.</li>
+            <li>Click the <strong>"Login"</strong> button in the top-right corner of the homepage.</li>
+            <li>Enter the email address and password you used when you purchased your course.</li>
+            <li>If you are redirected to an old Teachable page, stop and return to pilotinstitute.com to log in from there instead.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>⚠️ Important.</strong>
+            Do not use Google search results to find the login page. Bookmark <strong>pilotinstitute.com</strong> directly to avoid outdated links.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. QuizBank -->
+    <div class="guide-item" data-keywords="quizbank quiz quizzes final exam exams review">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">2</div>
+        <div class="guide-title-area">
+          <h3>How to access QuizBank for quizzes, final exams, and reviews.</h3>
+          <span class="tag course">Course Feature</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>QuizBank is where you can take practice quizzes, complete your final exams, and review previous attempts.</p>
+          <ol class="steps">
+            <li>Log in to your Pilot Institute account at <strong>pilotinstitute.com</strong>.</li>
+            <li>Navigate to your enrolled course from the dashboard.</li>
+            <li>Look for the <strong>"QuizBank"</strong> section in the course sidebar or menu.</li>
+            <li>From here, you can start new quizzes, take final exams, or click on past attempts to review your answers.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Tip.</strong>
+            If QuizBank does not appear, make sure you have completed the required course sections that unlock it.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Flashcards -->
+    <div class="guide-item" data-keywords="flashcards app mobile device">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">3</div>
+        <div class="guide-title-area">
+          <h3>How to access flashcards.</h3>
+          <span class="tag course">Course Feature</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Flashcards are a study tool available within your course. Please note that the older mobile app does not fully support flashcards on many newer and some older devices.</p>
+          <ol class="steps">
+            <li>Log in at <strong>pilotinstitute.com</strong> on a desktop or laptop computer for the best experience.</li>
+            <li>Open your enrolled course from the dashboard.</li>
+            <li>Look for the <strong>"Flashcards"</strong> section within the course content.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>⚠️ Note about the mobile app.</strong>
+            The current app has limited compatibility with many devices. For the most reliable flashcard experience, please use a web browser on a computer until the app is fully updated.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Download Docs -->
+    <div class="guide-item" data-keywords="download files docs documents pdf course">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">4</div>
+        <div class="guide-title-area">
+          <h3>How to download files from DOCS within the course.</h3>
+          <span class="tag course">Course Feature</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Course materials, study guides, and reference documents are available for download from the DOCS section.</p>
+          <ol class="steps">
+            <li>Log in and navigate to your course.</li>
+            <li>In the course menu, find and click on the <strong>"DOCS"</strong> tab or section.</li>
+            <li>Browse the available files and click on the one you would like to download.</li>
+            <li>A download prompt should appear. If it does not, try right-clicking the file link and selecting <strong>"Save Link As..."</strong>.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Tip.</strong>
+            If downloads are being blocked, check that your browser is not blocking pop-ups from pilotinstitute.com. You can adjust this in your browser settings.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. What is Circle? -->
+    <div class="guide-item" data-keywords="circle community platform what is">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">5</div>
+        <div class="guide-title-area">
+          <h3>What is Circle?</h3>
+          <span class="tag community">Community</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Circle is the community platform used by Pilot Institute. It is where students can connect with each other, ask questions, participate in live events, and access additional learning resources.</p>
+          <p>Think of it as the social and support hub for all Pilot Institute students. Once you have access, you can join discussions, attend live Q&A sessions, and more.</p>
+          <div class="callout">
+            <strong>💡 Good to know.</strong>
+            Circle is separate from the main course platform. You may need to create a Circle account or log in separately the first time.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Access Community -->
+    <div class="guide-item" data-keywords="community live q&a qa office hours circle access">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">6</div>
+        <div class="guide-title-area">
+          <h3>How to access the community (Live Q&A and Office Hours).</h3>
+          <span class="tag community">Community</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>The Pilot Institute community on Circle gives you access to live events and peer support. The two most popular features are the <strong>Live Q&A</strong> sessions and <strong>Office Hours</strong>.</p>
+          <ol class="steps">
+            <li>Log in to your Pilot Institute account.</li>
+            <li>Look for a <strong>"Community"</strong> link in your course dashboard or navigation menu.</li>
+            <li>You will be redirected to the Circle platform. Log in or create your Circle account if prompted.</li>
+            <li>Once inside, use the tabs or sidebar to find <strong>"Live Q&A"</strong> and <strong>"Office Hours"</strong>.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Tip.</strong>
+            Live Q&A and Office Hours are scheduled events. Check the community calendar for upcoming sessions so you do not miss them.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Reset Password -->
+    <div class="guide-item" data-keywords="password reset forgot change">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">7</div>
+        <div class="guide-title-area">
+          <h3>How to reset your password.</h3>
+          <span class="tag common">Common Issue</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>The "Forgot Password" feature on the site can be unreliable. Here is what to try, and what to do if it does not work.</p>
+          <p><strong>Try the self-service reset first:</strong></p>
+          <ol class="steps">
+            <li>Go to <strong>pilotinstitute.com</strong> and click <strong>"Login"</strong>.</li>
+            <li>Click the <strong>"Forgot Password?"</strong> link below the password field.</li>
+            <li>Enter the email address associated with your account and submit.</li>
+            <li>Check your inbox (and spam/junk folder) for a reset email.</li>
+            <li>Follow the link in the email to create a new password.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>⚠️ If the reset email does not arrive.</strong>
+            This is a known issue that affects some accounts. Do not worry—simply reach out to our support team and we will manually reset your password for you. This is quick and hassle-free.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Manually Complete Videos -->
+    <div class="guide-item" data-keywords="videos watched complete progress mark viewed">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">8</div>
+        <div class="guide-title-area">
+          <h3>How to manually mark videos as complete.</h3>
+          <span class="tag course">Course Feature</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Sometimes, videos you have already watched may not show as completed due to a progress tracking issue. You can manually mark them.</p>
+          <ol class="steps">
+            <li>Navigate to the specific lesson or video in your course.</li>
+            <li>Look for a <strong>checkmark button</strong>, <strong>"Mark as Complete"</strong> option, or a similar toggle near the video player or lesson title.</li>
+            <li>Click it to manually mark the lesson as viewed.</li>
+            <li>Repeat for any other lessons that are not showing as complete.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Tip.</strong>
+            If there is no manual completion option or the button does not work, contact support and we can update your progress on our end.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Collect Screenshots & System Info -->
+    <div class="guide-item" data-keywords="screenshot system specs browser information troubleshoot">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">9</div>
+        <div class="guide-title-area">
+          <h3>How to collect screenshots and system information for troubleshooting.</h3>
+          <span class="tag account">Account / Tech</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>When you contact support about a technical issue, sending screenshots and system details helps us resolve it much faster.</p>
+          <p><strong>How to take a screenshot:</strong></p>
+          <ol class="steps">
+            <li><strong>Windows:</strong> Press <strong>Windows Key + Shift + S</strong> to open the Snipping Tool. Select the area you want to capture, then paste it into an email or chat.</li>
+            <li><strong>Mac:</strong> Press <strong>Command + Shift + 4</strong> to select an area and capture it. The screenshot will save to your desktop.</li>
+            <li><strong>Chromebook:</strong> Press <strong>Ctrl + Shift + Show Windows</strong> (the rectangle key on the top row).</li>
+            <li><strong>Phone/Tablet:</strong> Press the <strong>Power + Volume Down</strong> buttons at the same time (most devices).</li>
+          </ol>
+          <p><strong>How to find your system and browser information:</strong></p>
+          <ol class="steps">
+            <li>Open your browser and go to <strong>whatismybrowser.com</strong>.</li>
+            <li>The site will automatically detect your browser, operating system, and other useful details.</li>
+            <li>Take a screenshot of this page or copy the information and include it when you contact support.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Why this helps.</strong>
+            Knowing your browser version, operating system, and screen resolution lets our team reproduce and fix your issue faster.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Device/Browser/Network Setup -->
+    <div class="guide-item" data-keywords="device browser network setup blocked cookies cache">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">10</div>
+        <div class="guide-title-area">
+          <h3>How your device, browser, and network should be set up.</h3>
+          <span class="tag account">Account / Tech</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>If you are experiencing issues loading the site, playing videos, or accessing course content, the problem may be related to your device, browser, or network settings.</p>
+          <p><strong>Browser requirements:</strong></p>
+          <ol class="steps">
+            <li>Use a modern, up-to-date browser such as <strong>Google Chrome</strong>, <strong>Mozilla Firefox</strong>, <strong>Microsoft Edge</strong>, or <strong>Safari</strong>.</li>
+            <li>Make sure your browser is updated to the latest version.</li>
+            <li>Enable <strong>JavaScript</strong> and <strong>cookies</strong> in your browser settings.</li>
+          </ol>
+          <p><strong>Clear your cache and cookies:</strong></p>
+          <ol class="steps">
+            <li>Go to your browser's <strong>Settings</strong> → <strong>Privacy</strong> (or <strong>History</strong>).</li>
+            <li>Select <strong>"Clear Browsing Data"</strong> or <strong>"Clear History"</strong>.</li>
+            <li>Make sure <strong>Cached images/files</strong> and <strong>Cookies</strong> are checked, then clear.</li>
+            <li>Restart your browser and try again.</li>
+          </ol>
+          <p><strong>Network considerations:</strong></p>
+          <ol class="steps">
+            <li>If you are on a work or school network, the site may be blocked by a firewall. Try using a personal network or mobile hotspot.</li>
+            <li>Disable any VPN or proxy services temporarily to see if they are causing the issue.</li>
+            <li>Make sure your internet connection is stable. Try loading other websites to confirm.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Zero to Remote Pilot -->
+    <div class="guide-item" data-keywords="zero remote pilot start leave course access">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">11</div>
+        <div class="guide-title-area">
+          <h3>How to access "Zero to Remote Pilot" to start or leave it.</h3>
+          <span class="tag course">Course Feature</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>"Zero to Remote Pilot" is a guided learning path designed to take you from beginner to certified. Here is how to access or exit it.</p>
+          <p><strong>To start:</strong></p>
+          <ol class="steps">
+            <li>Log in to your account at <strong>pilotinstitute.com</strong>.</li>
+            <li>From your dashboard, look for the <strong>"Zero to Remote Pilot"</strong> option or link.</li>
+            <li>Click to enroll or begin. Follow the guided steps from there.</li>
+          </ol>
+          <p><strong>To leave or exit:</strong></p>
+          <ol class="steps">
+            <li>If you would like to exit the "Zero to Remote Pilot" track and access your courses individually, look for an option to <strong>"Leave"</strong> or <strong>"Exit"</strong> the program from within the track overview page.</li>
+            <li>If you do not see this option, contact support and we will adjust your enrollment.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Request an Endorsement -->
+    <div class="guide-item" data-keywords="endorsement request certificate">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-number">12</div>
+        <div class="guide-title-area">
+          <h3>How to request an endorsement.</h3>
+          <span class="tag account">Account / Tech</span>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="guide-body">
+        <div class="guide-body-inner">
+          <p>Endorsement requests are built directly into the course. The option is mentioned at two points during the curriculum, but here is a quick walkthrough in case you need it.</p>
+          <ol class="steps">
+            <li>Complete all required sections of your course, including the final exam.</li>
+            <li>Once you have met the requirements, an <strong>"Request Endorsement"</strong> button or link will appear within the course.</li>
+            <li>Click it and follow the on-screen instructions to submit your request.</li>
+            <li>Our team will review your request and process the endorsement.</li>
+          </ol>
+          <div class="callout">
+            <strong>💡 Tip.</strong>
+            If you cannot find the endorsement request option after completing the course, reach out to support and we will walk you through it or process it for you.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /guide-list -->
+
+  <!-- CONTACT BANNER -->
+  <div class="contact-banner">
+    <h2>Still need help?</h2>
+    <p>Our support team is happy to assist you with any issue—big or small.</p>
+    <a class="contact-btn" href="mailto:support@pilotinstitute.com">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Contact Support
+    </a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  &copy; 2026 Pilot Institute. All rights reserved.
+</footer>
+
+<script>
+function toggleGuide(header) {
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+
+  document.querySelectorAll('.guide-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.guide-body').style.maxHeight = '0';
+  });
+
+  if (!wasOpen) {
+    item.classList.add('open');
+    const body = item.querySelector('.guide-body');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    setTimeout(() => {
+      item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+}
+
+function openGuide(index) {
+  const items = document.querySelectorAll('.guide-item');
+  if (items[index]) {
+    const header = items[index].querySelector('.guide-header');
+    toggleGuide(header);
+    setTimeout(() => {
+      items[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 150);
+  }
+}
+
+function filterGuides(query) {
+  const items = document.querySelectorAll('.guide-item');
+  const q = query.toLowerCase().trim();
+  items.forEach(item => {
+    if (!q) { item.style.display = ''; return; }
+    const title = item.querySelector('h3').textContent.toLowerCase();
+    const keywords = (item.dataset.keywords || '').toLowerCase();
+    const bodyText = item.querySelector('.guide-body-inner')?.textContent.toLowerCase() || '';
+    item.style.display = (title.includes(q) || keywords.includes(q) || bodyText.includes(q)) ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
