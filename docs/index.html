@@ -210,8 +210,8 @@ html.light .nav-brand .logo-dark  { display: block; }
 html.light .hero-eyebrow { color: var(--sky-blue); }
 
 .hero-title {
-  font-family: var(--font-display); font-size: 64px; font-weight: 400;
-  color: var(--text-main); line-height: 1.00; letter-spacing: -0.5px; margin-bottom: 24px;
+  font-family: var(--font-display); font-size: 71px; font-weight: 600;
+  color: var(--text-main); line-height: 0.9; letter-spacing: 2px; margin-bottom: 24px;
 }
 .hero-subtitle {
   font-size: 18px; color: var(--text-muted); line-height: 1.65;
@@ -422,7 +422,8 @@ html.light .elev-card { background: white; }
 }
 .impact-block::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute; top: 0; bottom: 0;
+  left: 50%; width: 100vw; transform: translateX(-50%);
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
