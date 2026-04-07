@@ -71,3 +71,73 @@ Removed: `design-system/preview.html` and `design-system/preview-dark.html` are 
 - **Delete old preview files**: `design-system/preview.html` and `design-system/preview-dark.html` can be removed once the team confirms `docs/index.html` is the canonical reference.
 - **Custom domain (optional)**: Enter `design.pilotinstitute.com` in repo Settings → Pages if DNS CNAME is set up.
 - **Brand Foundation (Section 2)**: Still a placeholder — Zhenia to supply vision, mission, core values, key audiences.
+
+---
+
+## Session — Continued: Skill testing, cleanup, architecture decisions
+
+---
+
+### Skill installation testing
+
+Walked through the full install flow. Issues found and resolved:
+
+1. **Backslash line-break in curl command** — when copied from chat, the `\` continuation character caused `curl: (3) URL malformed`. Fixed by writing the curl command as a single line in SETUP.md.
+2. **Wrong URL in SETUP.md** — pointed to the old flat path (`.claude/skills/pi-design-system.md`) after we had moved the file into a subfolder. Fixed to `.claude/skills/pi-design-system/SKILL.md`.
+3. **Repo was private** — raw GitHub URLs return 404 for private repos. Repo was made public to allow unauthenticated skill installs.
+4. **Broken skill file installed** — curl had saved a "404: Not Found" response as the SKILL.md. Re-running the corrected curl command after making the repo public resolved it. Confirmed working: curl downloaded 3273 bytes (the real skill file).
+
+**Install command (final, working):**
+```bash
+mkdir -p ~/.claude/skills/pi-design-system
+curl -o ~/.claude/skills/pi-design-system/SKILL.md https://raw.githubusercontent.com/Pilot-Institute/pi-design-system/main/.claude/skills/pi-design-system/SKILL.md
+```
+
+---
+
+### Skill test — troubleshooting-guide.html
+
+Tested `/pi-design` on `/Users/zheniavasiliev/Downloads/troubleshooting-guide.html`. The skill correctly identified and fixed all token violations:
+
+| Violation | Before | After |
+|-----------|--------|-------|
+| Font | `Lexend` (not a PI font) | `Arial` body, `Eina/Arial` display |
+| Page background | Light gray (light-first) | Midnight Navy + graph paper grid |
+| Cards | White | Ink Blue with Steel Blue border |
+| Off-palette colors | `#293A4E`, `#1a1f3d`, `#4a5568`, `#8896a6`, `#b0b8c4`, `#0b7ad8` | Replaced with PI palette tokens |
+| Warning callout border | Magenta Pink (wrong semantic) | Tomato Red `#FF464A` |
+| Quick link icons | Emoji | Inline SVG |
+
+**Key finding**: the skill's raw GitHub fetch fails for private repos. Now resolved (repo is public).
+
+---
+
+### Architecture decisions
+
+#### Color sync risk in docs/index.html
+Colors in `docs/index.html` are hardcoded CSS variables — a potential sync issue if the CSV updates without regenerating the HTML. Decision: acceptable for now, managed by process (regenerate HTML when CSV changes). Long-term fix is the CI/CD mini site roadmap item. A note should be added to `Instructions.md` flagging `docs/index.html` as a generated artifact.
+
+#### CSV location stays in reference/
+`reference/PI-Colour-Palette.csv` stays in `reference/` — it is a source input, not a generated output. Moving it to `design-system/` would blur source vs. output. The folder distinction is intentional:
+- `reference/` — raw source inputs (CSV, images, design guide exports)
+- `design-system/` — generated outputs (DESIGN.md, README.md)
+- `docs/` — generated outputs (index.html, assets)
+
+---
+
+### Cleanup completed this session
+
+- Deleted `design-system/preview.html` and `design-system/preview-dark.html` — superseded by `docs/index.html`
+- Deleted 13 unused image files from `docs/assets/` (Design-guide-*.png, Lead-magnet-*.jpg) — never referenced by index.html, were copies of reference/img/
+- `docs/assets/` now contains only `PI_logo_hor-dark.svg` and `PI_logo_hor-light.svg` (both used by index.html)
+- Fixed `design-system/README.md` file structure section to reflect current state
+- Updated SETUP.md visual reference section to point to GitHub Pages URL instead of deleted preview files
+
+---
+
+### Updated pending / next steps
+
+- **Add `docs/index.html` to Instructions.md** as a generated artifact that must be regenerated when the CSV changes
+- **v2 release — modules**: primary next task
+- **Custom domain**: `design.pilotinstitute.com` via DNS CNAME (optional)
+- **Brand Foundation (Section 2)**: Zhenia to supply
