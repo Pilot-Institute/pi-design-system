@@ -19,10 +19,12 @@ The system covers digital interfaces (web, course UI, email) and editorial print
 
 ```
 design-system/
-├── DESIGN.md          ← Complete 13-section design specification (primary reference)
-├── preview.html       ← Light mode visual catalog — open in browser to validate tokens
-├── preview-dark.html  ← Dark mode visual catalog — the primary PI surface
-└── README.md          ← This file
+├── DESIGN.md     ← Complete 13-section design specification (primary reference)
+└── README.md     ← This file
+
+docs/
+├── index.html    ← Visual token catalog with light/dark toggle (single source of truth)
+└── assets/       ← Logo SVGs and reference images
 ```
 
 Supporting source material lives in `reference/`:

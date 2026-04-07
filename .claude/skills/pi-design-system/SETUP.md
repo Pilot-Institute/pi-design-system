@@ -22,8 +22,7 @@ mkdir -p ~/.claude/skills/pi-design-system
 **2. Copy the skill file**
 
 ```bash
-curl -o ~/.claude/skills/pi-design-system/SKILL.md \
-  https://raw.githubusercontent.com/Pilot-Institute/pi-design-system/main/.claude/skills/pi-design-system.md
+curl -o ~/.claude/skills/pi-design-system/SKILL.md https://raw.githubusercontent.com/Pilot-Institute/pi-design-system/main/.claude/skills/pi-design-system/SKILL.md
 ```
 
 That's it. The skill is now available in every Claude Code session.
@@ -47,6 +46,24 @@ In any project, open Claude Code and run:
 /pi-design create an Instagram post for the flight attendant segment
 ```
 
+**Processing an existing HTML file:**
+
+```
+/pi-design review and rewrite /path/to/file.html to be PI brand compliant. Save the corrected file to the same path.
+```
+
+Claude will read the file, fetch the PI design system, apply all corrections, and write the fixed HTML back. To keep the original untouched, specify a different output path:
+
+```
+/pi-design review and rewrite /path/to/file.html to be PI brand compliant. Save the corrected file to /path/to/file-v2.html
+```
+
+To also get a written summary of what was changed:
+
+```
+/pi-design review and rewrite /path/to/file.html to be PI brand compliant. Save the corrected file to the same path, and write a brief change summary to /path/to/changes.md
+```
+
 ---
 
 ## How it works
@@ -62,14 +79,13 @@ The installed skill file is a thin bootstrap — it contains no design system co
 
 ## Visual reference
 
-The design system includes two visual token catalogs you can open in any browser:
+The design system ships with a visual token catalog — a single page with a light/dark mode toggle:
 
-| File | Description |
-|------|-------------|
-| `design-system/preview.html` | Light mode token catalog |
-| `design-system/preview-dark.html` | Dark mode token catalog (primary PI surface) |
+**GitHub Pages (no setup required):**
+https://pilot-institute.github.io/pi-design-system/
 
-If GitHub Pages is enabled on this repository, these are also available online without cloning.
+**Local file (if you have the repo cloned):**
+`docs/index.html` — open in any browser
 
 ---
 
