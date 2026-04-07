@@ -671,6 +671,31 @@ Base unit: 8px
 | Brand gradient | — | `linear-gradient(135deg, #2398FF, #F80590)` |
 | Grid texture | — | `rgba(35,152,255,0.08)` lines, 24px grid on `#0D0F20` |
 
+### HTML Implementation — Graph Paper Grid
+
+When generating HTML outputs (spec sheets, landing pages, documentation, UI demos), the graph paper grid **must appear at least once** in the output. For page-level documents, it belongs on the top/header section. Apply it as a `::before` pseudo-element on the section that has `position: relative` and `overflow: hidden`:
+
+```css
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(35,152,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,152,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  pointer-events: none;
+}
+.hero > * { position: relative; } /* keeps content above the grid layer */
+```
+
+Replace `.hero` with whatever class names the top section uses. The mask-image fades the grid from opaque at the top to transparent at the bottom — this is the standard hero treatment. For a full-section grid with no fade (e.g. Gobold impact blocks), remove the mask lines and extend the pattern edge-to-edge using `width: 100vw; left: 50%; transform: translateX(-50%)` if the element is inside a max-width container.
+
 ### Example Prompts
 
 **Hero section (dark):**
@@ -712,7 +737,7 @@ Base unit: 8px
 3. State the surface first — "on Midnight Navy with graph paper grid" or "on White"
 4. Gobold only for 80px+ all-caps full-bleed moments — never for sub-headings
 5. Specify both gradient endpoints and direction for every gradient use
-6. The graph paper grid is never optional on dark surfaces — include it in every dark prompt
+6. The graph paper grid is never optional on dark surfaces — include it in every dark prompt. For HTML outputs, implement it as a CSS `::before` pseudo-element on the top section (see "HTML Implementation — Graph Paper Grid"). The grid must appear at least once in every HTML page output.
 7. For states, specify: base → hover → focus → active in order
 8. For logo placements, reference the SVG file path and specify which variant (light/dark), never describe recoloring
 9. For illustration, specify the surface, the character color limit, and confirm flat vector with no gradients
