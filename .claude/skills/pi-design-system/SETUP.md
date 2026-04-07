@@ -49,7 +49,8 @@ In any project, open Claude Code and run:
 **Processing an existing HTML file:**
 
 ```
-/pi-design review and rewrite /path/to/file.html to be PI brand compliant. Save the corrected file to the same path.
+
+
 ```
 
 Claude will read the file, fetch the PI design system, apply all corrections, and write the fixed HTML back. To keep the original untouched, specify a different output path:
