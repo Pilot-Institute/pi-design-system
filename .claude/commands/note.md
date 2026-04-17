@@ -1,16 +1,29 @@
 Summarise this conversation and save it as a session note.
 
-Follow the /note command instructions in Instructions.md exactly:
-1. Summarise decisions made, files changed, context discussed, and anything worth preserving
-2. Use today's date to determine the filename: `notes/YYYY-MM-DD.md`
-3. If the file does not exist, create it with this structure:
+This repo is not enrolled in the Bench framework (no bench-index.csv). Use the simple notes/ system:
 
-```
-# Notes — YYYY-MM-DD
+1. Get today's date in YYMMDD format (e.g. 260417).
+2. Choose a short kebab-case description (1–4 words) for this session's actual work.
+3. Check for `notes/YYMMDD-short-description.md`:
+   - If it does not exist → create it using this template:
+     ```
+     # [Topic — short title]
+     **Date:** YYMMDD
 
-## [Timestamp or session title]
+     #### Discussion Topics
 
-[Summary of conversation]
-```
+     #### Key Decisions
 
-4. If the file already exists, append a new section to the bottom — do not overwrite existing content
+     #### Actions
+
+     | Item | Owner | Notes |
+     |------|-------|-------|
+     |      |       |       |
+
+     #### References
+
+     #### Open Questions
+     ```
+   - If it exists and this is the same session continued → append a new section.
+   - If it exists but is a different session → create a new file with a different description.
+4. No ticket posting.
